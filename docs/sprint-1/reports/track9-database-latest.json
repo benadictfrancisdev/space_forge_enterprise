@@ -1,0 +1,37 @@
+{
+  "phase": "database",
+  "generated_at": "2026-08-03T16:49:34.229Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "checks": [
+    {
+      "name": "bulk metadata create",
+      "status": "PASS",
+      "detail": "n=5"
+    },
+    {
+      "name": "pagination",
+      "status": "PASS",
+      "detail": "27ms count=10"
+    },
+    {
+      "name": "jobs list paginated",
+      "status": "PASS",
+      "detail": "23ms"
+    },
+    {
+      "name": "audit list paginated",
+      "status": "PASS",
+      "detail": "28ms n=10"
+    },
+    {
+      "name": "database ready check",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

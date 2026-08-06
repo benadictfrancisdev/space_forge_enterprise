@@ -1,0 +1,57 @@
+{
+  "phase": "security",
+  "generated_at": "2026-08-03T16:49:35.820Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  },
+  "checks": [
+    {
+      "name": "auth exchange",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "second tenant auth",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "refresh rotation",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "list sessions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "cross-org access blocked",
+      "status": "PASS",
+      "detail": "403"
+    },
+    {
+      "name": "cross-org dataset blocked",
+      "status": "PASS",
+      "detail": "403"
+    },
+    {
+      "name": "unauthenticated blocked",
+      "status": "PASS",
+      "detail": "401"
+    },
+    {
+      "name": "audit log accessible",
+      "status": "PASS",
+      "detail": "n=10"
+    },
+    {
+      "name": "logout",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

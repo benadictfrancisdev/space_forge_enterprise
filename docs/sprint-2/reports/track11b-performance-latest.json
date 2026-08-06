@@ -1,0 +1,37 @@
+{
+  "phase": "performance",
+  "generated_at": "2026-08-04T15:00:35.885Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "metrics": {
+      "discover_ms": 91,
+      "sync_ms": 183,
+      "rows_loaded": 300
+    }
+  },
+  "checks": [
+    {
+      "name": "perf connection created",
+      "status": "PASS",
+      "detail": "a045d09f"
+    },
+    {
+      "name": "discover latency",
+      "status": "PASS",
+      "detail": "91ms"
+    },
+    {
+      "name": "sync throughput smoke",
+      "status": "PASS",
+      "detail": "300 rows in 183ms"
+    },
+    {
+      "name": "batch pagination",
+      "status": "PASS",
+      "detail": "1639 rows/s"
+    }
+  ]
+}

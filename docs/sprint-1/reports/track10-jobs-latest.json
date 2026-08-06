@@ -1,0 +1,32 @@
+{
+  "phase": "jobs",
+  "generated_at": "2026-08-03T17:03:25.721Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  },
+  "checks": [
+    {
+      "name": "jobs summary endpoint",
+      "status": "PASS",
+      "detail": "total=0"
+    },
+    {
+      "name": "by_status rollup",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "success_rate_pct",
+      "status": "PASS",
+      "detail": "100"
+    },
+    {
+      "name": "summary reflects activity",
+      "status": "PASS",
+      "detail": "total=1"
+    }
+  ]
+}

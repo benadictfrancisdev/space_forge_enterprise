@@ -1,0 +1,52 @@
+{
+  "phase": "ops",
+  "generated_at": "2026-08-04T15:00:34.277Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8
+  },
+  "checks": [
+    {
+      "name": "connectors summary endpoint",
+      "status": "PASS",
+      "detail": "connections=2"
+    },
+    {
+      "name": "sync success_rate_pct",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "by_connector_type rollup",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "echo sync for ops dashboard",
+      "status": "PASS",
+      "detail": "rows=4"
+    },
+    {
+      "name": "summary reflects sync activity",
+      "status": "PASS",
+      "detail": "succeeded=3"
+    },
+    {
+      "name": "per-connection dashboard row",
+      "status": "PASS",
+      "detail": "healthy"
+    },
+    {
+      "name": "failures endpoint",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "ops summary includes connectors",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

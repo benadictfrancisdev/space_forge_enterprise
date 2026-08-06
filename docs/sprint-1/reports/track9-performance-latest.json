@@ -1,0 +1,45 @@
+{
+  "phase": "performance",
+  "generated_at": "2026-08-03T16:50:05.876Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "baselines": {
+      "largestChunkKb": 271,
+      "largestChunk": "DataAgent-DXUAzdTB.js",
+      "datasetListMs": 25,
+      "aiChatMs": 41,
+      "profileEnqueueMs": 108
+    },
+    "targets": {
+      "datasetListMs": 500,
+      "aiChatMs": 2000,
+      "profileEnqueueMs": 1000,
+      "largestChunkKb": 500
+    }
+  },
+  "checks": [
+    {
+      "name": "bundle largest chunk",
+      "status": "PASS",
+      "detail": "DataAgent-DXUAzdTB.js=271KB"
+    },
+    {
+      "name": "dataset list p95 target",
+      "status": "PASS",
+      "detail": "25ms"
+    },
+    {
+      "name": "ai chat latency",
+      "status": "PASS",
+      "detail": "41ms"
+    },
+    {
+      "name": "profile enqueue latency",
+      "status": "PASS",
+      "detail": "108ms"
+    }
+  ]
+}

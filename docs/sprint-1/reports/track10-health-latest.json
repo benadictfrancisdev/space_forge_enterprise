@@ -1,0 +1,57 @@
+{
+  "phase": "health",
+  "generated_at": "2026-08-03T17:03:24.626Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  },
+  "checks": [
+    {
+      "name": "liveness /health/",
+      "status": "PASS",
+      "detail": "ok"
+    },
+    {
+      "name": "readiness /health/ready/",
+      "status": "PASS",
+      "detail": "database,redis,storage,worker"
+    },
+    {
+      "name": "database probe",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "redis/cache probe",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "storage probe",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "worker probe",
+      "status": "PASS",
+      "detail": "eager"
+    },
+    {
+      "name": "ops platform-health",
+      "status": "PASS",
+      "detail": "ok"
+    },
+    {
+      "name": "AI dependency in platform-health",
+      "status": "PASS",
+      "detail": "inline"
+    },
+    {
+      "name": "AI health endpoint",
+      "status": "PASS",
+      "detail": "ops=9"
+    }
+  ]
+}

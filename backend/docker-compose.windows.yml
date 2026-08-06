@@ -1,0 +1,5 @@
+# Optional override for running the worker on a Windows host (not in Linux containers).
+# Usage: docker compose -f docker-compose.yml -f docker-compose.windows.yml up
+# For host-side Celery (without containers for api/worker):
+#   celery -A workers.celery_app worker -l info --pool=solo
+services: {}

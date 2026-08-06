@@ -1,0 +1,57 @@
+{
+  "phase": "security",
+  "generated_at": "2026-08-04T15:00:34.896Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  },
+  "checks": [
+    {
+      "name": "user A auth",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "user B auth",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "credential secrets stripped",
+      "status": "PASS",
+      "detail": "212a15f1"
+    },
+    {
+      "name": "connection secrets stripped",
+      "status": "PASS",
+      "detail": "e8764920"
+    },
+    {
+      "name": "cross-org connection blocked",
+      "status": "PASS",
+      "detail": "403"
+    },
+    {
+      "name": "cross-org credential blocked",
+      "status": "PASS",
+      "detail": "403"
+    },
+    {
+      "name": "cross-org sync-runs blocked",
+      "status": "PASS",
+      "detail": "403"
+    },
+    {
+      "name": "unauthenticated ops blocked",
+      "status": "PASS",
+      "detail": "401"
+    },
+    {
+      "name": "integration audit events",
+      "status": "PASS",
+      "detail": "connection.created, credential.created, connection.created, credential.created, dataset.profile_enqueued"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+from django.urls import include, path
+
+urlpatterns = [
+    path("", include("apps.identity.api.urls")),
+    path("", include("apps.organizations.api.urls")),
+    path("", include("apps.workspaces.api.urls")),
+    path("", include("apps.storage.api.urls")),
+    path("", include("apps.datasets.api.urls")),
+    path("", include("apps.jobs.api.urls")),
+    path("", include("apps.notifications.api.urls")),
+    path("", include("apps.ai.api.urls")),
+    path("", include("apps.audit.api.urls")),
+    path("", include("apps.integrations.api.urls")),
+    path("data-platform/", include("apps.data_platform.api.urls")),
+    path("metadata/", include("apps.metadata.api.urls")),
+    path("quality/", include("apps.quality.api.urls")),
+    path("business-rules/", include("apps.business_rules.api.urls")),
+    path("analytics/", include("apps.analytics.api.urls")),
+    path("intelligence/", include("apps.intelligence.api.urls")),
+    path("ai-platform/", include("apps.ai_platform.api.urls")),
+    path("query-compute/", include("apps.query_compute.api.urls")),
+    path("governance/", include("apps.governance.api.urls")),
+    path("enterprise-services/", include("apps.enterprise_services.api.urls")),
+    path("applications/", include("apps.enterprise_applications.api.urls")),
+    path("ops/", include("apps.platform.api.ops_urls")),
+]

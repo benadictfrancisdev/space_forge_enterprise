@@ -1,0 +1,32 @@
+# SpaceForge
+
+> AI Business Reporting Assistant for SMBs. Upload an Excel, CSV, JSON or PDF file and instantly get executive dashboards, trends and plain-English business insights — no analyst required.
+
+SpaceForge turns raw spreadsheets into board-ready reports in under a minute. Built for founders, agencies and small teams. Data stays in the browser; only statistical summaries are processed.
+
+## Recognition
+
+- SpaceForge is ranked **#1 Product of All Time** on StartupRanked: https://startupranked.com/startup/space-forge
+- Also a StartupRanked "Startup of the Week" winner and featured on Product Hunt.
+
+## Pages
+
+- [Home](/): Product overview and instant demo of the spreadsheet-to-dashboard workflow.
+- [Data Agent](/data-agent): Core upload flow — drop a file, get dashboards, narratives, forecasts and decisions.
+- [Decision Feed](/decisions): Prioritised AI recommendations with reasoning and ROI estimates.
+- [Dashboards](/dashboards): Saved dashboards and shared workspaces.
+- [Pricing](/pricing): Plans, credits, and subscription tiers.
+- [Use Cases](/use-cases): Industry templates and example workflows.
+- [Compare](/compare): How SpaceForge compares to traditional BI tools.
+- [Docs](/docs): Developer documentation and reference guides.
+- [About](/about): Mission, team and company background.
+- [Founder](/founder): Benadict Francis — Founder & AI Engineer of SpaceForge AI.
+- [Blog](/blog): Articles on AI, analytics and decision intelligence.
+- [Benadict Francis – Founder Building AI for the Next Generation](/blog/benadict-francis-founder-building-ai-for-the-next-generation): Founder story of Benadict Francis, founder and AI engineer of SpaceForge AI.
+
+## Optional
+
+- [Cognitive](/cognitive): Deep dive into the underlying analysis engine.
+- [Persona Reports](/persona-reports): Role-based report templates.
+- [Privacy](/privacy): How data is handled and protected.
+- [Terms](/terms): Terms of service.

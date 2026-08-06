@@ -1,0 +1,97 @@
+{
+  "phase": "ai",
+  "generated_at": "2026-08-03T16:49:33.368Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 17,
+    "failed": 0,
+    "total": 17
+  },
+  "checks": [
+    {
+      "name": "prompt registry",
+      "status": "PASS",
+      "detail": "ops=9"
+    },
+    {
+      "name": "operation:chat",
+      "status": "PASS",
+      "detail": "45ms conf=0.62"
+    },
+    {
+      "name": "operation:forecast",
+      "status": "PASS",
+      "detail": "46ms conf=0.55"
+    },
+    {
+      "name": "operation:scientist",
+      "status": "PASS",
+      "detail": "42ms conf=0.55"
+    },
+    {
+      "name": "operation:hypothesis",
+      "status": "PASS",
+      "detail": "41ms conf=0.4"
+    },
+    {
+      "name": "operation:nlp",
+      "status": "PASS",
+      "detail": "42ms conf=0.55"
+    },
+    {
+      "name": "operation:narrative",
+      "status": "PASS",
+      "detail": "46ms conf=0.58"
+    },
+    {
+      "name": "operation:anomaly",
+      "status": "PASS",
+      "detail": "43ms conf=0.55"
+    },
+    {
+      "name": "operation:decisions",
+      "status": "PASS",
+      "detail": "45ms conf=0.55"
+    },
+    {
+      "name": "operation:indian-intel",
+      "status": "PASS",
+      "detail": "46ms conf=0.55"
+    },
+    {
+      "name": "indian-intel:churn",
+      "status": "PASS",
+      "detail": "44ms"
+    },
+    {
+      "name": "indian-intel:inventory",
+      "status": "PASS",
+      "detail": "46ms"
+    },
+    {
+      "name": "indian-intel:revenue_drop",
+      "status": "PASS",
+      "detail": "49ms"
+    },
+    {
+      "name": "indian-intel:segmentation",
+      "status": "PASS",
+      "detail": "43ms"
+    },
+    {
+      "name": "indian-intel:sales_performance",
+      "status": "PASS",
+      "detail": "47ms"
+    },
+    {
+      "name": "consistency (provider+op)",
+      "status": "PASS",
+      "detail": "heuristic"
+    },
+    {
+      "name": "unsupported op rejected",
+      "status": "PASS",
+      "detail": "400"
+    }
+  ]
+}

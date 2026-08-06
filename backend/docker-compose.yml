@@ -1,0 +1,156 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: spaceforge
+      POSTGRES_USER: spaceforge
+      POSTGRES_PASSWORD: spaceforge
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spaceforge -d spaceforge"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: spaceforge
+      MINIO_ROOT_PASSWORD: spaceforgesecret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 spaceforge spaceforgesecret &&
+      mc mb --ignore-existing local/spaceforge &&
+      exit 0
+      "
+
+  api:
+    build: .
+    command: >
+      gunicorn config.wsgi:application
+      --bind 0.0.0.0:8000
+      --workers 2
+      --timeout 60
+      --access-logfile -
+      --error-logfile -
+    environment: &app_env
+      DJANGO_SETTINGS_MODULE: config.settings.local
+      DJANGO_SECRET_KEY: docker-compose-dev-secret-key-change-me-32
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,api
+      DATABASE_URL: postgres://spaceforge:spaceforge@postgres:5432/spaceforge
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      STORAGE_BACKEND: s3
+      S3_ENDPOINT_URL: http://minio:9000
+      S3_ACCESS_KEY: spaceforge
+      S3_SECRET_KEY: spaceforgesecret
+      S3_BUCKET: spaceforge
+      S3_REGION: us-east-1
+      S3_USE_SSL: "false"
+      AUTH_MODE: dev
+      JWT_SIGNING_KEY: docker-compose-jwt-signing-key-32b
+      LOG_LEVEL: INFO
+      LOG_FORMAT: json
+      READY_REQUIRE_WORKER: "true"
+      AI_SERVICE_MODE: http
+      AI_SERVICE_URL: http://ai:8100
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+      ai:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+  ai:
+    build:
+      context: .
+      dockerfile: ai_service/Dockerfile
+    ports:
+      - "8100:8100"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8100/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  worker:
+    build: .
+    # Use --pool=solo automatically on Windows hosts via override if needed.
+    # Default prefork is correct for Linux containers.
+    command: celery -A workers.celery_app worker -l info --concurrency 2
+    environment:
+      <<: *app_env
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+
+  beat:
+    build: .
+    command: celery -A workers.celery_app beat -l info
+    environment:
+      <<: *app_env
+    volumes:
+      - .:/app
+    depends_on:
+      worker:
+        condition: service_started
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  minio_data:

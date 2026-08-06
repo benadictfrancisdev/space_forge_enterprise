@@ -1,0 +1,221 @@
+{
+  "track": "9.1",
+  "generated_at": "2026-08-03T16:49:30.286Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 2,
+    "total": 26
+  },
+  "modules": [
+    {
+      "id": "upload",
+      "label": "Upload",
+      "group": "DATA",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "live_connectors",
+      "label": "Live Connectors",
+      "group": "DATA",
+      "mode": "local",
+      "status": "SKIP",
+      "detail": "local-first"
+    },
+    {
+      "id": "preview",
+      "label": "Preview",
+      "group": "DATA",
+      "mode": "client",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "analyze",
+      "label": "Statistics",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "chat",
+      "label": "Chat with Data",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "predict",
+      "label": "Predict",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ai_scientist",
+      "label": "AI Scientist",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "hypothesis",
+      "label": "Hypothesis",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "nlp_engine",
+      "label": "NLP Engine",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "narrative_full",
+      "label": "Full Narrative",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "anomaly_watch",
+      "label": "Anomaly Watch",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "decision_intel",
+      "label": "Decisions",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "forecast_chat",
+      "label": "Forecast",
+      "group": "ANALYZE",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ibi_churn",
+      "label": "Churn Predictor",
+      "group": "INDIAN INTEL",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ibi_inventory",
+      "label": "Inventory Optimizer",
+      "group": "INDIAN INTEL",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ibi_revenue",
+      "label": "Revenue Drop",
+      "group": "INDIAN INTEL",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ibi_segments",
+      "label": "Segmentation",
+      "group": "INDIAN INTEL",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "ibi_sales",
+      "label": "Sales Performance",
+      "group": "INDIAN INTEL",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "master_dashboard",
+      "label": "Dashboard",
+      "group": "VISUALIZE",
+      "mode": "client",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "power_bi",
+      "label": "Power BI",
+      "group": "VISUALIZE",
+      "mode": "client",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "kpi_cards",
+      "label": "KPI Cards",
+      "group": "VISUALIZE",
+      "mode": "client",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "visualize",
+      "label": "Charts",
+      "group": "VISUALIZE",
+      "mode": "client",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "stakeholder_report",
+      "label": "Stakeholder Report",
+      "group": "EXPORT",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "report",
+      "label": "Full Report",
+      "group": "EXPORT",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "group": "EXPORT",
+      "mode": "local",
+      "status": "SKIP",
+      "detail": "local-first"
+    },
+    {
+      "id": "system_status",
+      "label": "System Status",
+      "group": "EXPORT",
+      "mode": "api",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

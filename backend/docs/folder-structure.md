@@ -1,0 +1,30 @@
+# Folder Structure
+
+```
+backend/
+  apps/
+    core/
+    identity/
+    organizations/
+    workspaces/
+    memberships/
+    permissions/
+    storage/
+    datasets/
+    notifications/
+    jobs/
+    events/
+    audit/
+    billing/
+    platform/
+    api/
+  config/
+  workers/
+  docs/
+  tests/
+  scripts/
+  manage.py
+  Dockerfile
+  docker-compose.yml
+  requirements.txt
+```

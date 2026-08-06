@@ -1,0 +1,37 @@
+{
+  "phase": "ai-ops",
+  "generated_at": "2026-08-03T17:03:26.568Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "checks": [
+    {
+      "name": "ai summary endpoint",
+      "status": "PASS",
+      "detail": "n=1"
+    },
+    {
+      "name": "by_operation rollup",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "by_provider rollup",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "latency aggregate",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "ai_requests_total metric",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

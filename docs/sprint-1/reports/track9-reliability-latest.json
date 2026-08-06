@@ -1,0 +1,52 @@
+{
+  "phase": "reliability",
+  "generated_at": "2026-08-03T16:50:06.873Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8
+  },
+  "checks": [
+    {
+      "name": "missing name rejected",
+      "status": "PASS",
+      "detail": "400"
+    },
+    {
+      "name": "missing org_id rejected",
+      "status": "PASS",
+      "detail": "400"
+    },
+    {
+      "name": "missing dataset 404",
+      "status": "PASS",
+      "detail": "404"
+    },
+    {
+      "name": "invalid AI op rejected",
+      "status": "PASS",
+      "detail": "400"
+    },
+    {
+      "name": "bad token rejected",
+      "status": "PASS",
+      "detail": "401"
+    },
+    {
+      "name": "refresh reuse rejected",
+      "status": "PASS",
+      "detail": "401"
+    },
+    {
+      "name": "concurrent AI requests",
+      "status": "PASS",
+      "detail": "n=3"
+    },
+    {
+      "name": "cancel terminal job handled",
+      "status": "PASS",
+      "detail": "400"
+    }
+  ]
+}

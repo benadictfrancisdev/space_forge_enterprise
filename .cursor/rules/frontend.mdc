@@ -1,0 +1,34 @@
+---
+description: Frontend (Vite/React) work — UI, client logic, platform adapters
+globs: frontend/**/*.{ts,tsx}, frontend/index.html, frontend/vite.config.ts, frontend/tailwind.config.ts, frontend/postcss.config.js, frontend/components.json
+alwaysApply: false
+---
+
+# Frontend classification
+
+You are working on the **FRONTEND** of SpaceForge.
+
+## Boundaries
+- Edit only under `frontend/` (especially `frontend/src/`), plus Vite/Tailwind config and `index.html`.
+- Do **not** change `backend/` unless the user explicitly asks for API/backend work.
+- Live cloud today: Firebase Auth + Django REST when `VITE_API_BASE_URL` is set (Track 2).
+- AI / connectors / billing / events remain **stubs** until their API matrix rows ship.
+- Never bypass `frontend/src/platform/` with ad-hoc `fetch` in feature components.
+
+## Local test
+- URL: http://localhost:8080
+- Start: `npm run dev:frontend` (from repo root) or `cd frontend && npm run dev`
+- Env: `frontend/.env` → `VITE_API_BASE_URL=http://localhost:8000`
+
+## Important paths
+| Area | Path |
+|------|------|
+| Routes | `frontend/src/App.tsx` |
+| Pages | `frontend/src/pages/` |
+| Data Agent | `frontend/src/components/data-agent/` |
+| Platform façade | `frontend/src/platform/` |
+| API wrappers | `frontend/src/services/api.ts` |
+| Events UI | `frontend/src/features/events/` |
+
+## Rule
+Prefer client-side behavior and platform adapter changes. Backend REST lives in `backend/` — classify that as a separate task.

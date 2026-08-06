@@ -1,0 +1,29 @@
+---
+description: Backend (Django/DRF) work — APIs, domains, workers, tenancy
+globs: backend/**/*
+alwaysApply: false
+---
+
+# Backend classification
+
+You are working on the **BACKEND** of SpaceForge.
+
+## Boundaries
+- Edit only under `backend/`.
+- Do **not** change `frontend/` UI unless the user explicitly asks for frontend work.
+- Phase 0.1 modular monolith: Django + DRF + Celery + Postgres + Redis + S3/MinIO.
+- Product AI pipelines are **not** here yet (echo job worker only).
+
+## Local test
+- API: http://localhost:8000
+- Swagger: http://localhost:8000/api/docs/
+- Health: http://localhost:8000/health/
+- Start: `npm run dev:backend` (from repo root) or `cd backend && docker compose up --build`
+- Env: `backend/.env` (copy from `backend/.env.example`)
+- Dev auth: `Authorization: Bearer dev:<uid>:<email>`
+
+## Domain apps (`backend/apps/`)
+identity · organizations · workspaces · memberships · permissions · storage · datasets · jobs · notifications · events · audit · billing · platform · api · core
+
+## Rule
+Keep multi-tenant org scoping and RBAC intact. Frontend consumes this via future REST adapters — do not add Firebase/BaaS calls into Django domains.

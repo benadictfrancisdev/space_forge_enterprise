@@ -1,0 +1,87 @@
+{
+  "phase": "frontend",
+  "generated_at": "2026-08-03T16:49:35.994Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 15,
+    "failed": 0,
+    "total": 15
+  },
+  "checks": [
+    {
+      "name": "nav matrix modules",
+      "status": "PASS",
+      "detail": "n=26"
+    },
+    {
+      "name": "DATA_AGENT_TAB_IDS export",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mobile nav tab alignment",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "URL tab sync",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "lazy-loaded modules",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "mobile uses shared nav config",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "PlatformStates component",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "loading state a11y",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "error state a11y",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "PlatformStates wired: DataChat.tsx",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "PlatformStates wired: ProactiveAnomalyWatch.tsx",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "PlatformStates wired: KPIComparisonCards.tsx",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "ai envelope parser",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "ai fallbacks",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "http 401 refresh",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

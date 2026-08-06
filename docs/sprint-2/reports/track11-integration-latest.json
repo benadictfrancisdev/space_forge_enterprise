@@ -1,0 +1,72 @@
+{
+  "phase": "integration",
+  "generated_at": "2026-08-04T15:00:33.405Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 12,
+    "failed": 0,
+    "total": 12
+  },
+  "checks": [
+    {
+      "name": "auth exchange",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "tenant provisioned",
+      "status": "PASS",
+      "detail": "b1a66d2f"
+    },
+    {
+      "name": "connector catalog",
+      "status": "PASS",
+      "detail": "airtable, aws_s3, csv, excel, mongodb, mysql, platform.echo, postgresql, rest_api, shopify, sqlserver"
+    },
+    {
+      "name": "credential create (secrets stripped)",
+      "status": "PASS",
+      "detail": "816c83af"
+    },
+    {
+      "name": "connection create",
+      "status": "PASS",
+      "detail": "f1694a62"
+    },
+    {
+      "name": "connector.test job",
+      "status": "PASS",
+      "detail": "healthy"
+    },
+    {
+      "name": "connector.discover job",
+      "status": "PASS",
+      "detail": "tables=1 v=1"
+    },
+    {
+      "name": "schema snapshot GET",
+      "status": "PASS",
+      "detail": "v=1"
+    },
+    {
+      "name": "connector.sync job",
+      "status": "PASS",
+      "detail": "rows=5"
+    },
+    {
+      "name": "sync runs history",
+      "status": "PASS",
+      "detail": "runs=1"
+    },
+    {
+      "name": "dataset materialized",
+      "status": "PASS",
+      "detail": "rows=5"
+    },
+    {
+      "name": "connector draft test",
+      "status": "PASS",
+      "detail": "Echo connector reachable"
+    }
+  ]
+}

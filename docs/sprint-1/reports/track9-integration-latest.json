@@ -1,0 +1,57 @@
+{
+  "phase": "integration",
+  "generated_at": "2026-08-03T16:49:31.493Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  },
+  "checks": [
+    {
+      "name": "auth exchange",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "tenant provisioned",
+      "status": "PASS",
+      "detail": "d885c754"
+    },
+    {
+      "name": "upload→storage→dataset→profile",
+      "status": "PASS",
+      "detail": "rows=4"
+    },
+    {
+      "name": "statistics stage",
+      "status": "PASS",
+      "detail": "cols=3"
+    },
+    {
+      "name": "AI analysis stage",
+      "status": "PASS",
+      "detail": "chat"
+    },
+    {
+      "name": "decision intelligence stage",
+      "status": "PASS",
+      "detail": "decisions"
+    },
+    {
+      "name": "export manifest stage",
+      "status": "PASS",
+      "detail": "Track9 Cert Dataset"
+    },
+    {
+      "name": "job pipeline stage",
+      "status": "PASS",
+      "detail": "stages=profile,forecast,narrative,decisions,report"
+    },
+    {
+      "name": "invalid dataset rejected",
+      "status": "PASS",
+      "detail": "400"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "phase": "exit",
+  "generated_at": "2026-08-04T15:00:36.935Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "readiness": {
+      "integration_platform_ready": true,
+      "functional": true,
+      "secure": true,
+      "operational": true,
+      "performant": true,
+      "reliable": true,
+      "connectors_certified": 11,
+      "pytest_passed": 80,
+      "readiness_score_pct": 100,
+      "waivers": [
+        "External live connectors (Postgres host, Airtable PAT, S3 bucket) require sandbox credentials",
+        "GCS / Azure Blob connectors not implemented",
+        "Celery Beat scheduled sync not in automated certification",
+        "OAuth connectors not implemented",
+        "Duplicate sync lock and network fault injection deferred to Track 12"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "pytest regression",
+      "status": "PASS",
+      "detail": "80 passed, 7 warnings in 8.79s"
+    },
+    {
+      "name": "11.x Live integration",
+      "status": "PASS",
+      "detail": {
+        "passed": 12,
+        "failed": 0,
+        "total": 12
+      }
+    },
+    {
+      "name": "11B.8 Connector ops",
+      "status": "PASS",
+      "detail": {
+        "passed": 8,
+        "failed": 0,
+        "total": 8
+      }
+    },
+    {
+      "name": "11B.9 Security",
+      "status": "PASS",
+      "detail": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9
+      }
+    },
+    {
+      "name": "11B.9 Performance smoke",
+      "status": "PASS",
+      "detail": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "metrics": {
+          "discover_ms": 91,
+          "sync_ms": 183,
+          "rows_loaded": 300
+        }
+      }
+    },
+    {
+      "name": "11B.9 Reliability",
+      "status": "PASS",
+      "detail": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7
+      }
+    }
+  ]
+}

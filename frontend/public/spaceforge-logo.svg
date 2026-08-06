@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="400" height="120">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="50%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon background -->
+  <rect x="4" y="10" width="40" height="40" rx="8" fill="url(#logoGrad)"/>
+  
+  <!-- Glow overlay -->
+  <rect x="4" y="10" width="40" height="40" rx="8" fill="url(#logoGrad)" opacity="0.15"/>
+  
+  <!-- Outer ring -->
+  <circle cx="24" cy="30" r="16" stroke="white" stroke-width="1.5" stroke-opacity="0.3" fill="none"/>
+  
+  <!-- Cross connections -->
+  <path d="M24 16 L24 24 M24 36 L24 44 M10 30 L18 30 M30 30 L38 30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.9"/>
+  
+  <!-- Diagonal connections -->
+  <path d="M14 20 L20 26 M28 34 L34 40 M34 20 L28 26 M20 34 L14 40" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  
+  <!-- Central node -->
+  <circle cx="24" cy="30" r="4.5" fill="white" fill-opacity="0.95"/>
+  
+  <!-- Outer nodes -->
+  <circle cx="24" cy="18" r="2.2" fill="white" fill-opacity="0.85"/>
+  <circle cx="24" cy="42" r="2.2" fill="white" fill-opacity="0.85"/>
+  <circle cx="12" cy="30" r="2.2" fill="white" fill-opacity="0.85"/>
+  <circle cx="36" cy="30" r="2.2" fill="white" fill-opacity="0.85"/>
+  
+  <!-- Corner nodes -->
+  <circle cx="15" cy="21" r="1.8" fill="white" fill-opacity="0.6"/>
+  <circle cx="33" cy="21" r="1.8" fill="white" fill-opacity="0.6"/>
+  <circle cx="15" cy="39" r="1.8" fill="white" fill-opacity="0.6"/>
+  <circle cx="33" cy="39" r="1.8" fill="white" fill-opacity="0.6"/>
+  
+  <!-- Text: Space -->
+  <text x="50" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="#1a1a2e">Space</text>
+  
+  <!-- Text: Forge -->
+  <text x="107" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="url(#textGrad)">Forge</text>
+  
+  <!-- AI badge -->
+  <rect x="160" y="22" width="28" height="16" rx="4" fill="url(#textGrad)" fill-opacity="0.1"/>
+  <text x="174" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#3b82f6" text-anchor="middle">AI</text>
+</svg>

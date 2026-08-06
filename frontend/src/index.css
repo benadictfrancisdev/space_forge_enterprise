@@ -1,0 +1,846 @@
+/* Fonts loaded via <link> in index.html for non-blocking rendering */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light — Monochrome production: pure black on white */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+
+    /* Pure mono primary */
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 6%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 6%;
+
+    --cyan-acc: 0 0% 40%;
+    --blue-glow: 0 0% 6%;
+
+    --destructive: 0 75% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 6%;
+
+    --radius: 0.875rem;
+
+    /* Glass tokens — neutral grayscale */
+    --glass-bg: 0 0% 100% / 0.85;
+    --glass-border: 0 0% 0% / 0.06;
+    --glass-card-bg: 0 0% 100% / 0.95;
+    --glass-card-border: 0 0% 0% / 0.05;
+    --glass-nav-bg: 0 0% 100% / 0.9;
+    --glass-nav-border: 0 0% 0% / 0.05;
+    --glass-hover-shadow: 0 12px 36px hsl(0 0% 0% / 0.08);
+    --glass-section-overlay: hsl(0 0% 100% / 0.4);
+
+    /* Charts — grayscale ramp */
+    --chart-1: 0 0% 10%;
+    --chart-2: 0 0% 28%;
+    --chart-3: 0 0% 46%;
+    --chart-4: 0 0% 62%;
+    --chart-5: 0 0% 76%;
+    --chart-6: 0 0% 88%;
+    --chart-7: 212 73% 15%;
+    --chart-8: 213 30% 80%;
+
+    --linear-border: 213 22% 93%;
+    --linear-hover: 213 30% 96%;
+    --linear-active: 244 100% 68%;
+
+    --success: 162 73% 38%;
+    --warning: 38 92% 50%;
+    --info: 199 89% 48%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(244 100% 68%) 0%, hsl(258 90% 66%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(216 17% 99%) 0%, hsl(213 30% 96%) 100%);
+    --gradient-glass: linear-gradient(180deg, hsl(0 0% 100% / 0.95) 0%, hsl(213 30% 97% / 0.85) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(244 100% 68% / 0.10) 0%, transparent 60%);
+    --gradient-accent: linear-gradient(180deg, hsl(244 100% 68%) 0%, hsl(258 90% 60%) 100%);
+
+    --shadow-xs: 0 1px 2px hsl(212 73% 15% / 0.04);
+    --shadow-sm: 0 1px 3px hsl(212 73% 15% / 0.06);
+    --shadow-md: 0 4px 12px -2px hsl(212 73% 15% / 0.08);
+    --shadow-lg: 0 18px 40px -12px hsl(212 73% 15% / 0.12);
+    --shadow-card: 0 1px 2px hsl(212 73% 15% / 0.04), 0 1px 1px hsl(212 73% 15% / 0.03);
+    --shadow-button: 0 1px 2px hsl(244 100% 30% / 0.18), 0 0 0 1px hsl(244 100% 68% / 0.12);
+    --shadow-glow: 0 0 0 4px hsl(244 100% 68% / 0.10);
+    --shadow-glow-strong: 0 12px 32px -10px hsl(244 100% 68% / 0.35);
+
+
+    --space-bg-start: 30 12% 98%;
+    --space-bg-mid: 30 10% 96%;
+    --space-bg-end: 30 8% 95%;
+    --space-vignette: 30 8% 90%;
+    --space-star-primary: 220 8% 70%;
+    --space-star-blue: 220 8% 75%;
+    --space-nebula-cool: 220 14% 60%;
+    --space-nebula-warm: 36 24% 70%;
+    --space-wash-cool: 220 12% 70%;
+    --space-wash-soft: 30 14% 78%;
+
+    --planet-shadow: 220 14% 18%;
+    --planet-highlight: 0 0% 100%;
+    --planet-glow: 36 30% 70%;
+
+    --planet-earth-light: 220 12% 70%;
+    --planet-earth-mid: 220 10% 50%;
+    --planet-earth-dark: 220 14% 30%;
+    --planet-earth-land: 160 12% 42%;
+    --planet-earth-cloud: 0 0% 98%;
+
+    --planet-mars-light: 22 28% 56%;
+    --planet-mars-mid: 18 30% 42%;
+    --planet-mars-dark: 14 28% 28%;
+    --planet-mars-detail: 14 24% 22%;
+    --planet-mars-speckle: 22 22% 46%;
+
+    --planet-saturn-light: 36 28% 70%;
+    --planet-saturn-mid: 34 22% 56%;
+    --planet-saturn-dark: 30 18% 38%;
+    --planet-saturn-band: 32 18% 46%;
+    --planet-saturn-ring-core: 36 26% 66%;
+    --planet-saturn-ring-edge: 38 18% 78%;
+    --planet-saturn-ring-line: 32 20% 50%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 212 73% 15%;
+    --sidebar-primary: 244 100% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 30% 96%;
+    --sidebar-accent-foreground: 212 73% 15%;
+    --sidebar-border: 213 22% 93%;
+    --sidebar-ring: 244 100% 68%;
+  }
+
+  .dark {
+    /* Dark — premium graphite obsidian, warm-white accent */
+    --background: 220 10% 6%;
+    --foreground: 30 14% 95%;
+
+    --card: 220 10% 9%;
+    --card-foreground: 30 14% 95%;
+
+    --popover: 220 10% 9%;
+    --popover-foreground: 30 14% 95%;
+
+    /* Classic monochrome — white on black */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 220 8% 13%;
+    --secondary-foreground: 30 14% 95%;
+
+    --muted: 220 8% 12%;
+    --muted-foreground: 220 6% 62%;
+
+    --accent: 36 18% 78%;
+    --accent-foreground: 220 14% 8%;
+
+    --cyan-acc: 36 22% 88%;
+    --blue-glow: 36 18% 78%;
+
+    --destructive: 358 56% 52%;
+    --destructive-foreground: 30 14% 95%;
+
+    --border: 220 8% 16%;
+    --input: 220 8% 14%;
+    --ring: 0 0% 98%;
+
+    /* Charts — quiet warm-grey palette */
+    --chart-1: 0 0% 98%;
+    --chart-2: 36 14% 70%;
+    --chart-3: 220 6% 62%;
+    --chart-4: 36 12% 55%;
+    --chart-5: 220 6% 45%;
+    --chart-6: 36 8% 38%;
+    --chart-7: 220 4% 30%;
+    --chart-8: 36 6% 22%;
+
+    --linear-border: 220 8% 18%;
+    --linear-hover: 220 8% 14%;
+    --linear-active: 36 22% 88%;
+
+    --success: 152 40% 52%;
+    --warning: 32 60% 60%;
+    --info: 36 22% 88%;
+
+    --gradient-primary: linear-gradient(180deg, hsl(36 22% 92%) 0%, hsl(36 18% 80%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220 10% 6%) 0%, hsl(220 10% 8%) 100%);
+    --gradient-glass: linear-gradient(180deg, hsl(220 10% 11% / 0.78) 0%, hsl(220 10% 7% / 0.6) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(36 22% 88% / 0.05) 0%, transparent 60%);
+    --gradient-accent: linear-gradient(180deg, hsl(36 18% 78%) 0%, hsl(36 14% 65%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(220 10% 10%) 0%, hsl(220 10% 8%) 100%);
+    --gradient-mesh: radial-gradient(at 20% 30%, hsl(36 22% 88% / 0.04) 0px, transparent 50%), radial-gradient(at 80% 70%, hsl(36 14% 70% / 0.03) 0px, transparent 50%);
+
+    --shadow-xs: 0 1px 2px hsl(220 20% 1% / 0.5);
+    --shadow-sm: 0 2px 4px hsl(220 20% 1% / 0.55);
+    --shadow-md: 0 4px 12px -2px hsl(220 20% 1% / 0.6);
+    --shadow-lg: 0 16px 40px -10px hsl(220 20% 1% / 0.65);
+    --shadow-card: 0 1px 2px hsl(220 20% 1% / 0.5), 0 0 0 1px hsl(220 8% 18% / 0.6);
+    --shadow-button: 0 1px 2px hsl(220 20% 1% / 0.6);
+    --shadow-glow: 0 0 0 1px hsl(36 22% 88% / 0.08);
+    --shadow-glow-strong: 0 12px 36px -12px hsl(36 22% 88% / 0.16);
+
+    --space-bg-start: 220 10% 6%;
+    --space-bg-mid: 220 10% 8%;
+    --space-bg-end: 220 10% 5%;
+    --space-vignette: 220 14% 3%;
+    --space-star-primary: 36 22% 88%;
+    --space-star-blue: 36 14% 78%;
+    --space-nebula-cool: 220 8% 30%;
+    --space-nebula-warm: 36 18% 50%;
+    --space-wash-cool: 220 8% 40%;
+    --space-wash-soft: 36 14% 55%;
+
+    --planet-shadow: 220 14% 3%;
+    --planet-highlight: 36 22% 95%;
+    --planet-glow: 36 22% 88%;
+
+    --planet-earth-light: 36 18% 70%;
+    --planet-earth-mid: 36 14% 50%;
+    --planet-earth-dark: 220 8% 28%;
+    --planet-earth-land: 36 12% 42%;
+    --planet-earth-cloud: 36 18% 92%;
+
+    --planet-mars-light: 22 28% 52%;
+    --planet-mars-mid: 18 26% 38%;
+    --planet-mars-dark: 14 24% 24%;
+    --planet-mars-detail: 14 20% 18%;
+    --planet-mars-speckle: 22 18% 38%;
+
+    --planet-saturn-light: 36 22% 72%;
+    --planet-saturn-mid: 36 16% 56%;
+    --planet-saturn-dark: 30 14% 32%;
+    --planet-saturn-band: 32 14% 44%;
+    --planet-saturn-ring-core: 36 18% 68%;
+    --planet-saturn-ring-edge: 36 14% 80%;
+    --planet-saturn-ring-line: 32 14% 50%;
+
+    --glass-bg: 220 10% 9% / 0.7;
+    --glass-border: 36 22% 88% / 0.08;
+    --glass-card-bg: 220 10% 10% / 0.78;
+    --glass-card-border: 36 22% 88% / 0.07;
+    --glass-nav-bg: 220 10% 6% / 0.85;
+    --glass-nav-border: 36 22% 88% / 0.06;
+    --glass-hover-shadow: 0 16px 40px hsl(220 20% 1% / 0.55), 0 0 0 1px hsl(36 22% 88% / 0.06);
+    --glass-section-overlay: hsl(220 10% 7% / 0.4);
+
+    --sidebar-background: 220 10% 6%;
+    --sidebar-foreground: 30 14% 95%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 220 8% 12%;
+    --sidebar-accent-foreground: 30 14% 95%;
+    --sidebar-border: 220 8% 16%;
+    --sidebar-ring: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Prevent media and embeds from blowing out narrow viewports */
+  img, video, iframe, canvas, svg, object, embed {
+    max-width: 100%;
+    height: auto;
+  }
+  iframe, video, canvas { height: revert; }
+
+  /* Long words / URLs should wrap instead of forcing horizontal scroll */
+  /* Long words / URLs should wrap instead of forcing horizontal scroll */
+  p, span, a, li, td, th, label {
+    overflow-wrap: break-word;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Mobile tap targets — buttons & links min 44px on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    button:not(.no-touch-target),
+    a[role="button"]:not(.no-touch-target) {
+      min-height: 44px;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.022em;
+  }
+
+  h1 { letter-spacing: -0.03em; }
+  h2 { letter-spacing: -0.025em; }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  /* Smoother scrollbars in dark mode */
+  .dark ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 8px;
+    border: 2px solid hsl(var(--background));
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.3);
+  }
+
+  /* Selection */
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .linear-card {
+    @apply bg-card border border-border rounded-xl transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  .linear-card:hover {
+    @apply border-primary/25;
+    box-shadow: var(--shadow-md), 0 0 0 1px hsl(var(--primary) / 0.08);
+    transform: translateY(-1px);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border rounded-xl;
+    background: hsl(var(--glass-card-bg));
+    border-color: hsl(var(--glass-card-border));
+    box-shadow: var(--shadow-card);
+  }
+  .glass-card:hover {
+    box-shadow: var(--glass-hover-shadow);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .linear-sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-muted-foreground transition-all duration-200;
+  }
+  .linear-sidebar-item:hover { @apply bg-secondary text-foreground; }
+  .linear-sidebar-item.active {
+    @apply bg-primary/10 text-primary;
+    box-shadow: inset 3px 0 0 hsl(var(--primary)), 0 0 20px hsl(var(--primary) / 0.08);
+  }
+
+  .tableau-chart { @apply bg-card border border-border rounded-xl p-4; box-shadow: var(--shadow-sm); }
+  .tableau-chart-header { @apply flex items-center justify-between pb-3 mb-3 border-b border-border; }
+  .tableau-chart-title { @apply text-sm font-semibold text-foreground tracking-tight; }
+  .tableau-legend { @apply flex flex-wrap gap-3 mt-3 pt-3 border-t border-border; }
+  .tableau-legend-item { @apply flex items-center gap-2 text-xs text-muted-foreground; }
+
+  .linear-button {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium rounded-xl transition-all duration-200;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    box-shadow: var(--shadow-xs);
+  }
+  .linear-button-primary { @apply bg-primary text-primary-foreground hover:bg-primary/90; }
+
+  .linear-input {
+    @apply w-full px-3 py-2 text-sm bg-background border border-border rounded-xl transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/25 focus:border-primary;
+  }
+
+  .linear-tabs { @apply flex items-center gap-1 p-1 bg-secondary/50 rounded-xl; }
+  .linear-tab { @apply px-3 py-1.5 text-sm font-medium text-muted-foreground rounded-lg transition-all duration-200; }
+  .linear-tab:hover { @apply text-foreground; }
+  .linear-tab.active { @apply bg-card text-foreground shadow-sm; }
+
+  .stat-card {
+    @apply relative rounded-xl border border-border bg-card p-4 transition-all duration-300;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-card:hover {
+    @apply border-primary/25;
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+
+  /* Premium gradient surface — for hero panels & feature cards */
+  .premium-surface {
+    @apply relative overflow-hidden rounded-2xl border;
+    background: var(--gradient-card);
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-card);
+  }
+  .premium-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-mesh);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  .premium-surface > * {
+    position: relative;
+  }
+
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-button { box-shadow: var(--shadow-button); }
+
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform .5s ease;
+  }
+  .btn-shimmer:hover::after {
+    transform: translateX(100%);
+  }
+
+  .space-bg-base {
+    background: linear-gradient(180deg, hsl(var(--space-bg-start)) 0%, hsl(var(--space-bg-mid)) 42%, hsl(var(--space-bg-end)) 100%);
+  }
+
+  .space-star-canvas {
+    opacity: 0.92;
+  }
+
+  .space-nebula,
+  .space-wash {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+
+  .space-nebula {
+    filter: blur(96px);
+  }
+
+  .space-nebula-cool {
+    top: -14%;
+    right: -8%;
+    width: min(66vw, 980px);
+    height: min(48vw, 700px);
+    background: radial-gradient(ellipse at 60% 42%, hsl(var(--space-nebula-cool) / 0.23) 0%, transparent 68%);
+  }
+
+  .space-nebula-warm {
+    top: 28%;
+    left: -12%;
+    width: min(52vw, 760px);
+    height: min(40vw, 580px);
+    background: radial-gradient(ellipse at 48% 50%, hsl(var(--space-nebula-warm) / 0.16) 0%, transparent 70%);
+  }
+
+  .space-wash {
+    filter: blur(82px);
+  }
+
+  .space-wash-cool {
+    top: 14%;
+    right: 10%;
+    width: min(48vw, 720px);
+    height: min(38vw, 520px);
+    background: radial-gradient(ellipse, hsl(var(--space-wash-cool) / 0.15) 0%, transparent 72%);
+  }
+
+  .space-wash-soft {
+    top: 50%;
+    left: 2%;
+    width: min(42vw, 620px);
+    height: min(32vw, 460px);
+    background: radial-gradient(ellipse, hsl(var(--space-wash-soft) / 0.13) 0%, transparent 70%);
+  }
+
+  .space-vignette {
+    background: radial-gradient(ellipse at center, transparent 52%, hsl(var(--space-vignette) / 0.55) 100%);
+  }
+
+  .space-scanlines {
+    opacity: 0.025;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 9px,
+      hsl(var(--primary) / 0.25) 10px,
+      transparent 11px
+    );
+  }
+
+  .planet-shell {
+    position: absolute;
+    z-index: 2;
+    will-change: transform;
+  }
+
+  .planet-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+  }
+
+  .planet-earth-body {
+    background: radial-gradient(circle at 30% 26%, hsl(var(--planet-earth-light)) 0%, hsl(var(--planet-earth-mid)) 48%, hsl(var(--planet-earth-dark)) 100%);
+    box-shadow:
+      inset -10px -12px 18px hsl(var(--planet-shadow) / 0.2),
+      inset 8px 8px 16px hsl(var(--planet-highlight) / 0.22);
+  }
+
+  .planet-earth-continents {
+    background:
+      radial-gradient(35% 30% at 38% 42%, hsl(var(--planet-earth-land) / 0.42) 0%, transparent 70%),
+      radial-gradient(28% 22% at 62% 60%, hsl(var(--planet-earth-land) / 0.34) 0%, transparent 72%),
+      radial-gradient(26% 24% at 44% 72%, hsl(var(--planet-earth-land) / 0.3) 0%, transparent 72%);
+    mix-blend-mode: multiply;
+    opacity: 0.88;
+  }
+
+  .planet-earth-clouds {
+    background:
+      radial-gradient(40% 24% at 35% 30%, hsl(var(--planet-earth-cloud) / 0.34) 0%, transparent 70%),
+      radial-gradient(34% 20% at 68% 44%, hsl(var(--planet-earth-cloud) / 0.24) 0%, transparent 72%),
+      radial-gradient(30% 20% at 52% 70%, hsl(var(--planet-earth-cloud) / 0.22) 0%, transparent 72%);
+    mix-blend-mode: screen;
+    filter: blur(0.5px);
+    opacity: 0.72;
+  }
+
+  .planet-earth-atmosphere {
+    inset: -10%;
+    background: radial-gradient(circle, hsl(var(--planet-glow) / 0.18) 0%, transparent 68%);
+    filter: blur(9px);
+    opacity: 0.72;
+  }
+
+  .planet-mars-body {
+    background: radial-gradient(circle at 30% 24%, hsl(var(--planet-mars-light)) 0%, hsl(var(--planet-mars-mid)) 46%, hsl(var(--planet-mars-dark)) 100%);
+    box-shadow:
+      inset -8px -10px 16px hsl(var(--planet-shadow) / 0.22),
+      inset 7px 7px 13px hsl(var(--planet-highlight) / 0.1);
+  }
+
+  .planet-mars-texture {
+    background:
+      radial-gradient(42% 30% at 38% 34%, hsl(var(--planet-mars-detail) / 0.38) 0%, transparent 62%),
+      radial-gradient(34% 26% at 58% 60%, hsl(var(--planet-mars-detail) / 0.34) 0%, transparent 68%),
+      repeating-radial-gradient(circle at 40% 50%, hsl(var(--planet-mars-speckle) / 0.18) 0 2px, transparent 2px 6px);
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+  }
+
+  .planet-mars-haze {
+    inset: -8%;
+    background: radial-gradient(circle, hsl(var(--planet-mars-light) / 0.12) 0%, transparent 70%);
+    filter: blur(7px);
+    opacity: 0.6;
+  }
+
+  .planet-saturn-glow {
+    position: absolute;
+    inset: -14%;
+    border-radius: 9999px;
+    background: radial-gradient(circle, hsl(var(--planet-saturn-ring-core) / 0.16) 0%, transparent 72%);
+    filter: blur(13px);
+    opacity: 0.68;
+  }
+
+  .planet-saturn-system {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-24deg);
+  }
+
+  .planet-saturn-ring {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 37%;
+    height: 25%;
+    border-radius: 9999px;
+    border: 1px solid hsl(var(--planet-saturn-ring-line) / 0.32);
+    background: linear-gradient(
+      90deg,
+      hsl(var(--planet-saturn-ring-edge) / 0) 0%,
+      hsl(var(--planet-saturn-ring-core) / 0.24) 18%,
+      hsl(var(--planet-saturn-ring-core) / 0.52) 50%,
+      hsl(var(--planet-saturn-ring-core) / 0.24) 82%,
+      hsl(var(--planet-saturn-ring-edge) / 0) 100%
+    );
+  }
+
+  .planet-saturn-ring-back {
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  .planet-saturn-ring-front {
+    z-index: 5;
+    clip-path: inset(50% 0 0 0);
+    opacity: 0.95;
+  }
+
+  .planet-saturn-body-wrap {
+    position: absolute;
+    inset: 19% 23%;
+    border-radius: 9999px;
+    z-index: 3;
+    overflow: hidden;
+  }
+
+  .planet-saturn-body {
+    background: radial-gradient(circle at 31% 24%, hsl(var(--planet-saturn-light)) 0%, hsl(var(--planet-saturn-mid)) 48%, hsl(var(--planet-saturn-dark)) 100%);
+    box-shadow:
+      inset -10px -10px 16px hsl(var(--planet-shadow) / 0.24),
+      inset 8px 7px 12px hsl(var(--planet-highlight) / 0.16);
+  }
+
+  .planet-saturn-bands {
+    background:
+      repeating-linear-gradient(
+        172deg,
+        transparent 0,
+        transparent 7px,
+        hsl(var(--planet-saturn-band) / 0.28) 7px,
+        hsl(var(--planet-saturn-band) / 0.28) 12px,
+        transparent 12px,
+        transparent 18px
+      );
+    mix-blend-mode: soft-light;
+    opacity: 0.8;
+  }
+
+  .planet-saturn-highlight {
+    background: radial-gradient(48% 36% at 34% 22%, hsl(var(--planet-highlight) / 0.24) 0%, transparent 70%);
+    opacity: 0.7;
+  }
+
+  .planet-saturn-ring-shadow {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 43%;
+    height: 14%;
+    z-index: 4;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, hsl(var(--planet-shadow) / 0) 0%, hsl(var(--planet-shadow) / 0.3) 50%, hsl(var(--planet-shadow) / 0) 100%);
+    filter: blur(1.2px);
+    transform: rotate(2deg);
+  }
+
+  .dark .planet-earth-atmosphere {
+    opacity: 0.94;
+  }
+
+  .dark .planet-saturn-glow {
+    opacity: 0.94;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in { animation: fade-in 0.3s ease-out forwards; opacity: 0; will-change: opacity; }
+  .animate-slide-up { animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; will-change: transform, opacity; }
+  .animate-slide-in-right { animation: slide-in-right 0.2s ease-out forwards; opacity: 0; will-change: transform, opacity; }
+
+  .bg-success { background-color: hsl(var(--success)); }
+  .text-success { color: hsl(var(--success)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .bg-info { background-color: hsl(var(--info)); }
+  .text-info { color: hsl(var(--info)); }
+  .shadow-glow-strong { box-shadow: var(--shadow-glow-strong); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes planet-float-earth {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes planet-float-mars {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes planet-float-saturn {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+
+@keyframes planet-slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes planet-slow-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-planet-float-earth { animation: planet-float-earth 14s ease-in-out infinite; }
+.animate-planet-float-mars { animation: planet-float-mars 17s ease-in-out infinite 1.5s; }
+.animate-planet-float-saturn { animation: planet-float-saturn 18s ease-in-out infinite 1s; }
+.animate-planet-slow-rotate { animation: planet-slow-rotate 140s linear infinite; }
+.animate-planet-slow-rotate-reverse { animation: planet-slow-rotate-reverse 180s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-planet-float-earth,
+  .animate-planet-float-mars,
+  .animate-planet-float-saturn,
+  .animate-planet-slow-rotate,
+  .animate-planet-slow-rotate-reverse {
+    animation: none !important;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* Custom scrollbar */
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
+.scrollbar-thin::-webkit-scrollbar { width: 5px; height: 5px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* Prevent iOS zoom on input focus */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Safe area padding for notched devices */
+.pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+/* Touch-friendly spacing */
+.touch-spacing > * { min-height: 44px; min-width: 44px; }
+
+/* Mobile tap highlight removal */
+@media (max-width: 767px) {
+  button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Responsive text utilities */
+.text-responsive-sm { @apply text-xs sm:text-sm; }
+.text-responsive-base { @apply text-sm sm:text-base; }
+.text-responsive-lg { @apply text-base sm:text-lg md:text-xl; }
+
+/* Mobile-friendly button sizes */
+@media (max-width: 767px) {
+  .btn-touch { min-height: 44px; min-width: 44px; }
+}
+
+/* ── Space background & animated elements ────────────────── */
+.space-vignette {
+  background: radial-gradient(ellipse at center, transparent 50%, hsl(var(--background) / 0.35) 100%);
+  pointer-events: none;
+}
+
+/* Smooth tab content transitions */
+.tab-content-enter {
+  animation: tab-enter 0.2s ease-out forwards;
+  contain: layout style;
+}
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Star pulse animation for hero badges */
+@keyframes star-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4); }
+  50%       { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }
+}
+.star-pulse { animation: star-pulse 2.5s ease-in-out infinite; }
+
+/* Shimmer on CTA buttons */
+@keyframes btn-shimmer-move {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+.btn-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--primary) / 0.7) 40%,
+    hsl(var(--primary)) 60%,
+    hsl(var(--primary)) 100%
+  );
+  background-size: 200% auto;
+  animation: btn-shimmer-move 3s linear infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--cyan-acc, 190 90% 45%)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card style */
+.glass-card {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+
+/* Live pulse indicator */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+.live-pulse { animation: live-pulse 1.4s ease-in-out infinite; }

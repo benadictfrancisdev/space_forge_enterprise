@@ -1,0 +1,81 @@
+{
+  "phase": "acceptance",
+  "generated_at": "2026-08-03T17:03:38.988Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "acceptance": {
+      "operations_ready": true,
+      "observable": true,
+      "metrics_active": true,
+      "health_monitored": true,
+      "jobs_monitored": true,
+      "ai_ops_visible": true,
+      "alerting_defined": true,
+      "sprint1_exit_prerequisite": "Track 9 enterprise_ready + Track 10 operations_ready"
+    }
+  },
+  "checks": [
+    {
+      "name": "backend ops pytest",
+      "status": "PASS",
+      "detail": "4 passed, 6 warnings in 5.45s"
+    },
+    {
+      "name": "phase:logging",
+      "status": "PASS",
+      "detail": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6
+      }
+    },
+    {
+      "name": "phase:metrics",
+      "status": "PASS",
+      "detail": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      }
+    },
+    {
+      "name": "phase:health",
+      "status": "PASS",
+      "detail": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9
+      }
+    },
+    {
+      "name": "phase:jobs",
+      "status": "PASS",
+      "detail": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4
+      }
+    },
+    {
+      "name": "phase:ai-ops",
+      "status": "PASS",
+      "detail": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      }
+    },
+    {
+      "name": "phase:alerts",
+      "status": "PASS",
+      "detail": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      }
+    }
+  ]
+}

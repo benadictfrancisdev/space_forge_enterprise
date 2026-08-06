@@ -1,0 +1,32 @@
+{
+  "phase": "metrics",
+  "generated_at": "2026-08-03T17:03:24.292Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  },
+  "checks": [
+    {
+      "name": "metrics hooks module",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "prometheus renderer",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "GET /metrics",
+      "status": "PASS",
+      "detail": "200"
+    },
+    {
+      "name": "http_requests_total exposed",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

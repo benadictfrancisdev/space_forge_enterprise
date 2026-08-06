@@ -1,0 +1,42 @@
+{
+  "phase": "logging",
+  "generated_at": "2026-08-03T17:03:23.782Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  },
+  "checks": [
+    {
+      "name": "trace_id contextvar",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "organization_id contextvar",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "JSON formatter fields",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "TraceIdMiddleware",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "RequestLoggingMiddleware org context",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "live trace header",
+      "status": "PASS",
+      "detail": "b16cdd9d"
+    }
+  ]
+}

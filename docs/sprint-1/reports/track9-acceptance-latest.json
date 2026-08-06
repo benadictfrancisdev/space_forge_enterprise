@@ -1,0 +1,118 @@
+{
+  "phase": "acceptance",
+  "generated_at": "2026-08-03T16:50:45.710Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "acceptance": {
+      "enterprise_ready": true,
+      "reliable": true,
+      "secure": true,
+      "performant": true,
+      "intuitive": "manual UI checklist required — see TRACK-9-FRONTEND-CERTIFICATION.md",
+      "pilot_waivers": [
+        "live_connectors (local)",
+        "history (local)"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "backend pytest",
+      "status": "PASS",
+      "detail": "43 passed, 6 warnings in 6.68s"
+    },
+    {
+      "name": "frontend build",
+      "status": "PASS"
+    },
+    {
+      "name": "phase:functional",
+      "status": "PASS",
+      "detail": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 2,
+        "total": 26
+      }
+    },
+    {
+      "name": "phase:integration",
+      "status": "PASS",
+      "detail": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9
+      }
+    },
+    {
+      "name": "phase:ai",
+      "status": "PASS",
+      "detail": {
+        "passed": 17,
+        "failed": 0,
+        "total": 17
+      }
+    },
+    {
+      "name": "phase:database",
+      "status": "PASS",
+      "detail": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      }
+    },
+    {
+      "name": "phase:security",
+      "status": "PASS",
+      "detail": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9
+      }
+    },
+    {
+      "name": "phase:frontend",
+      "status": "PASS",
+      "detail": {
+        "passed": 15,
+        "failed": 0,
+        "total": 15
+      }
+    },
+    {
+      "name": "phase:performance",
+      "status": "PASS",
+      "detail": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "baselines": {
+          "largestChunkKb": 271,
+          "largestChunk": "DataAgent-DXUAzdTB.js",
+          "datasetListMs": 25,
+          "aiChatMs": 41,
+          "profileEnqueueMs": 108
+        },
+        "targets": {
+          "datasetListMs": 500,
+          "aiChatMs": 2000,
+          "profileEnqueueMs": 1000,
+          "largestChunkKb": 500
+        }
+      }
+    },
+    {
+      "name": "phase:reliability",
+      "status": "PASS",
+      "detail": {
+        "passed": 8,
+        "failed": 0,
+        "total": 8
+      }
+    }
+  ]
+}

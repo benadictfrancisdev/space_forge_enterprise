@@ -1,0 +1,27 @@
+{
+  "phase": "alerts",
+  "generated_at": "2026-08-03T17:03:27.192Z",
+  "api": "http://localhost:8000",
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3
+  },
+  "checks": [
+    {
+      "name": "alerts endpoint",
+      "status": "PASS",
+      "detail": "n=0"
+    },
+    {
+      "name": "ops summary includes alerts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "ops summary platform health",
+      "status": "PASS",
+      "detail": "ok"
+    }
+  ]
+}
