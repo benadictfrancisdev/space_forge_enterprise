@@ -76,3 +76,7 @@ backend/lite_db.sqlite3
 
 # Local git override (not a real git config for the repo)
 .gitconfig
+*.env
+credentials.json
+*.key
+.credentials
