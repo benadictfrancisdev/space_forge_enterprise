@@ -197,6 +197,10 @@ export class DjangoStorageService implements StorageService {
 }
 
 /** Domain helpers used by Track 2.5 production flow (not legacy StorageService shape). */
+let inFlightTenant:
+  | Promise<ServiceResult<{ organizationId: string; workspaceId: string }>>
+  | null = null;
+
 export const djangoApi = {
   async health(): Promise<ServiceResult<{ status: string; service?: string }>> {
     try {
@@ -296,8 +300,18 @@ export const djangoApi = {
 
   /**
    * Ensure org + workspace exist and are stored for X-Organization-ID / X-Workspace-ID.
+   * Concurrent callers share one in-flight request to avoid duplicate org/workspace creation
+   * on first login (the tenant bootstrap is invoked from several hooks at once).
    */
-  async ensureTenant(): Promise<ServiceResult<{ organizationId: string; workspaceId: string }>> {
+  ensureTenant(): Promise<ServiceResult<{ organizationId: string; workspaceId: string }>> {
+    if (inFlightTenant) return inFlightTenant;
+    inFlightTenant = djangoApi._ensureTenantOnce().finally(() => {
+      inFlightTenant = null;
+    });
+    return inFlightTenant;
+  },
+
+  async _ensureTenantOnce(): Promise<ServiceResult<{ organizationId: string; workspaceId: string }>> {
     try {
       let orgId = getOrganizationId();
       let wsId = getWorkspaceId();

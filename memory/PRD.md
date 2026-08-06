@@ -31,7 +31,15 @@ frontend↔backend mapping report, files modified, validation, blockers.
   scientist context, operations, search, notifications, jobs, connections, ai chat/health.
 - Report: `docs/FRONTEND-BACKEND-INTEGRATION-REPORT.md`.
 
-## Status: all 15 core features connected to real backend & API-validated. UI e2e pending.
+## Status: all 15 core features connected to real backend & API-validated. UI e2e passed.
+
+## Post-audit fixes (2026-08-06)
+- Fixed non-idempotent tenant bootstrap in `platform/djangoAdapter.ts`: concurrent
+  `ensureTenant()` calls now share one in-flight promise (was creating duplicate
+  org+workspace on first login).
+- UI e2e (testing agent, iteration_1): auth (Firebase signup→JWT exchange) works; all 8
+  `/apps/*` load and fire real `/api/v1` 200s; operations dashboard renders; data-agent +
+  tenant bootstrap succeed. 90% (global search fires on Enter — not a defect; Sankey lazy).
 
 ## Backlog / blockers (P1/P2)
 - P1 Event Engine (`/app/events/*`) uses unrouted edge-fn names (events-stats/query/ingest)
