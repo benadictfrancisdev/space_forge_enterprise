@@ -1,5 +1,5 @@
 ﻿# SpaceForge Enterprise Intelligence Cloud
-
+HwH5P6TB;3,j<48v
 ## Status
 - **Frontend** — React + Vite + TypeScript in `frontend/`
 - **Backend** — Django + DRF modular monolith in `backend/`
