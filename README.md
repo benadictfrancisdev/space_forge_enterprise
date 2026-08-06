@@ -1,5 +1,5 @@
 ﻿# SpaceForge Enterprise Intelligence Cloud
-HwH5P6TB;3,j<48v
+
 ## Status
 - **Frontend** — React + Vite + TypeScript in `frontend/`
 - **Backend** — Django + DRF modular monolith in `backend/`
@@ -24,7 +24,7 @@ scripts/      Validation & local-dev helpers
 |---|---|---|
 | **Where** | `frontend/` only | `backend/` only |
 | **Stack** | Vite · React · TypeScript · Tailwind | Django · DRF · Celery · Postgres |
-| **Local URL** | http://localhost:8080 | http://localhost:8000 |
+| **Local URL** | http://localhost:3000 | http://localhost:8000 |
 | **Env file** | `frontend/.env` | `backend/.env` |
 | **Start** | `npm run dev:frontend` | `npm run dev:backend` **or** `npm run dev:backend:lite` |
 | **You are here when editing** | `frontend/src/**`, `frontend/index.html`, Vite/Tailwind configs | `backend/apps/**`, `backend/workers/**`, `backend/config/**` |
@@ -63,7 +63,7 @@ npm run dev
 ```
 Or from repo root: `npm run dev:frontend`
 
-Open: http://localhost:8080
+Open: http://localhost:3000
 
 Copy env: `cp frontend/.env.example frontend/.env`
 

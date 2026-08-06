@@ -16,7 +16,7 @@ You are working on the **FRONTEND** of SpaceForge.
 - Never bypass `frontend/src/platform/` with ad-hoc `fetch` in feature components.
 
 ## Local test
-- URL: http://localhost:8080
+- URL: http://localhost:3000
 - Start: `npm run dev:frontend` (from repo root) or `cd frontend && npm run dev`
 - Env: `frontend/.env` → `VITE_API_BASE_URL=http://localhost:8000`
 
