@@ -6,7 +6,10 @@ import path from "path";
 export default defineConfig({
   server: {
     host: "::",
-    port: 8080,
+    port: 3000,
+    strictPort: false,
+    allowedHosts: true,
+    hmr: { clientPort: 443, protocol: "wss" },
   },
   plugins: [react()],
   resolve: {
