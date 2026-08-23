@@ -134,8 +134,7 @@ export async function httpRequest<T = unknown>(
         const authRetry =
           res.status === 401 &&
           !options.public &&
-          options.headers?.["X-Platform-Retry-401"] === "1" &&
-          tokenRefresher &&
+          !!tokenRefresher &&
           attempt < retries;
         if (authRetry) {
           const fresh = await tokenRefresher();

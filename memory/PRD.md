@@ -54,3 +54,23 @@ frontend↔backend mapping report, files modified, validation, blockers.
 ## Next tasks
 - Run UI e2e (Firebase signup → navigate each /apps/* + /data-agent upload).
 - Optionally seed demo org/workspace/dataset for non-empty dashboards.
+
+## V2 Rewrite — Phase 1 COMPLETE (2026-08-23) — verified by testing_agent iteration_2 (100%)
+Spec: Databricks/Claude minimalist dark rewrite (5 features + 5 fixes + design system + event/billing + seed).
+User choices: phased (reuse existing code); defer billing (402 credit-gate w/ DB balances); Gemini 3 Flash
+for AI (later phases); keep Django lite (Postgres only at deploy); full UI/UX redesign, old+new features.
+- Design system: `.dark` tokens retuned to exact spec (#0F1115 base, #1A1D24 surface, #2A2E37 border,
+  #4F8BFF accent), Inter+JetBrains Mono, sharp 6px radius (scoped in AppLayout).
+- SPA workspace shell: `components/layout/AppLayout.tsx` (w-64 sidebar, 3px blue active edge, breadcrumbs,
+  single-viewport h-screen overflow-hidden, sign-out). Routes `/v2`, `/v2/incidents`, `/v2/metrics`
+  (`pages/v2/WorkspaceHome|IncidentsView|MetricsView`). FIX-02 resolved (no more blank routes).
+- FIX-03: `httpClient.ts` 401 retry condition fixed (was checking a header never present → refresh never fired);
+  `useAuth.signOut` now calls `platform.auth.logout()` → `POST /api/v1/auth/logout/` before Firebase signOut.
+- FIX-01: single-SPA/single-port already unified (no :3002 split). backend.from() stub table calls
+  (dashboards/business_context_memory/profiles — 15 sites) NOT yet migrated → deferred (need backend REST).
+
+## Phase 2 (next): Rules Engine (.rule.md validate/deploy AST), @Graph entity discovery, Shadow Sandbox
+(SSE simulate), Event Engine backend (ingest/query/stats). Phase 3: Incident Intelligence (CAUSE/PREDICT
+via Gemini), Billing/metering 402 gate + usage deduction, `seed_enterprise_demo` multi-tenant seed.
+Deferred/known: credits still on stub (Phase 3), backend.from stubs (FIX-01 remainder), Google-auth domain,
+persona modal on /data-agent.

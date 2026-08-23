@@ -10,7 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { backend } from "@/platform";
+import { backend, platform } from "@/platform";
 
 interface AuthUser {
   id: string;
@@ -106,6 +106,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   const signOut = async () => {
+    // FIX-03: blacklist backend JWT/refresh session before clearing Firebase state.
+    try {
+      const authSvc = platform.auth as unknown as { logout?: () => Promise<void> };
+      if (authSvc?.logout) await authSvc.logout();
+    } catch {
+      /* best-effort backend logout */
+    }
     await firebaseSignOut(auth);
   };
 
