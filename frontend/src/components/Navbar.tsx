@@ -53,6 +53,9 @@ const Navbar = () => {
             <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
               How it Works
             </a>
+            <Link to="/v2" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
+              Rule Engine
+            </Link>
             <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
               Pricing
             </Link>
@@ -169,7 +172,10 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <Link to="/pricing" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Pricing</Link>
+              <Link to="/v2" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">
+              Rule Engine
+            </Link>
+            <Link to="/pricing" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Pricing</Link>
               <Link to="/docs" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Docs</Link>
               <Link to="/apps/executive" className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">Enterprise Suite</Link>
               <Link to="/decisions" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Decision Feed</Link>

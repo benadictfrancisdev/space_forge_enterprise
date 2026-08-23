@@ -49,8 +49,9 @@ function run(args) {
 }
 
 console.log("═══════════════════════════════════════");
+console.log("  FRONTEND (Vite) — http://localhost:3000/v2");
 console.log("  BACKEND (lite) — Django on :8000");
-console.log("  Not the frontend (that is :5173)");
+console.log("  Not the frontend (that is :3000)");
 console.log("═══════════════════════════════════════");
 
 await run(["manage.py", "migrate", "--noinput"]);

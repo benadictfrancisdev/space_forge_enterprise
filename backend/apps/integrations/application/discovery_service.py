@@ -5,7 +5,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from apps.audit.application.services import AuditService
-from apps.core.exceptions import NotFoundError, ValidationError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError, ValidationError
 from apps.integrations.application.connection_service import ConnectionService
 from apps.integrations.application.connector_registry import get_connector_registry
 from apps.integrations.domain.schema import schema_fingerprint, schema_to_tables_payload
@@ -78,14 +78,16 @@ class DiscoveryService:
         )
         return job
 
-    def run_discover_for_job(self, *, connection_id) -> dict:
+    def run_discover_for_job(self, *, connection_id, organization_id) -> dict:
         """Worker entrypoint — discover schema and version snapshots."""
         try:
             connection = Connection.objects.select_related("credential").get(
-                id=connection_id
+                id=connection_id, organization_id=organization_id
             )
         except Connection.DoesNotExist as exc:
-            raise NotFoundError("Connection not found") from exc
+            raise PermissionDeniedError(
+                "Cross-tenant resource access blocked in worker."
+            ) from exc
 
         registry = get_connector_registry()
         try:

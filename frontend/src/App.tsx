@@ -6,14 +6,15 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ThemeProvider } from "@/hooks/useTheme";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
-import { OnboardingOverlay } from "@/components/onboarding";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { UniversalShareButton } from "@/components/sharing/UniversalShareButton";
+import { PlatformChrome } from "@/app/layout/PlatformChrome";
+import V2Platform from "./pages/V2Platform";
 
-const SHARE_BUTTON_HIDDEN_PATHS = ["/auth", "/privacy", "/terms", "/data-agent", "/app", "/apps"];
+const SHARE_BUTTON_HIDDEN_PATHS = ["/auth", "/privacy", "/terms", "/data-agent", "/app", "/apps", "/v2"];
 const GlobalShareButton = () => {
   const { pathname } = useLocation();
   if (SHARE_BUTTON_HIDDEN_PATHS.some((p) => pathname.startsWith(p))) return null;
@@ -21,8 +22,7 @@ const GlobalShareButton = () => {
 };
 
 // Lazy load all pages for code splitting
-const SpaceBotWidget  = lazy(() => import("@/components/SpaceBotWidget"));
-const Index           = lazy(() => import("./pages/Index"));
+const LandingPage     = lazy(() => import("@/features/marketing/components/LandingPage"));
 const DataAgent       = lazy(() => import("./pages/DataAgent"));
 const Auth            = lazy(() => import("./pages/Auth"));
 const Pricing         = lazy(() => import("./pages/Pricing"));
@@ -87,20 +87,28 @@ const App = () => (
               <TooltipProvider>
                 <Toaster />
                 <Sonner />
-                <ErrorBoundary name="OnboardingOverlay">
-                  <OnboardingOverlay />
-                </ErrorBoundary>
-                <ErrorBoundary name="SpaceBotWidget">
-                  <Suspense fallback={null}>
-                    <SpaceBotWidget />
-                  </Suspense>
-                </ErrorBoundary>
+                <PlatformChrome />
                 <ErrorBoundary name="GlobalShareButton">
                   <GlobalShareButton />
                 </ErrorBoundary>
                 <Suspense fallback={<PageLoader />}>
                   <Routes>
-                    <Route path="/"                element={<ErrorBoundary name="Home"><Index /></ErrorBoundary>} />
+                    <Route
+                      path="/"
+                      element={
+                        <ErrorBoundary name="LandingPage">
+                          <LandingPage />
+                        </ErrorBoundary>
+                      }
+                    />
+                    <Route
+                      path="/v2/*"
+                      element={
+                        <ErrorBoundary name="V2Platform">
+                          <V2Platform />
+                        </ErrorBoundary>
+                      }
+                    />
                     <Route path="/auth"            element={<ErrorBoundary name="Auth"><Auth /></ErrorBoundary>} />
                     <Route path="/data-agent"      element={<ErrorBoundary name="DataAgent"><DataAgent /></ErrorBoundary>} />
                     <Route path="/cognitive"       element={<ErrorBoundary name="Cognitive"><CognitiveLanding /></ErrorBoundary>} />

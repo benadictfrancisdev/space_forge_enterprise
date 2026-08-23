@@ -3,7 +3,7 @@ from __future__ import annotations
 from django.db import transaction
 
 from apps.audit.application.services import AuditService
-from apps.core.exceptions import NotFoundError, ValidationError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError, ValidationError
 from apps.datasets.application.profiling import profile_tabular_bytes
 from apps.datasets.infrastructure.models import Dataset
 from apps.organizations.application.services import OrganizationService
@@ -238,9 +238,16 @@ class DatasetService:
         dataset.save(update_fields=["profile_status", "statistics", "updated_at"])
         return dataset
 
-    def run_profile_now(self, *, dataset_id) -> Dataset:
+    def run_profile_now(self, *, dataset_id, organization_id) -> Dataset:
         """Called by Celery worker — no user context."""
-        dataset = Dataset.objects.select_related("storage_object").get(id=dataset_id)
+        try:
+            dataset = Dataset.objects.select_related("storage_object").get(
+                id=dataset_id, organization_id=organization_id
+            )
+        except Dataset.DoesNotExist as exc:
+            raise PermissionDeniedError(
+                "Cross-tenant resource access blocked in worker."
+            ) from exc
         if not dataset.storage_object_id:
             raise ValidationError("No storage object")
         content = self.storage.provider.download(key=dataset.storage_object.key)

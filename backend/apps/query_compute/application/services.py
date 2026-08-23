@@ -6,8 +6,9 @@ from django.utils import timezone
 
 from apps.audit.application.services import AuditService
 from apps.core.dataset_context import load_dataset_context, require_quality_gate
-from apps.core.exceptions import NotFoundError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError
 from apps.datasets.application.services import DatasetService
+from apps.datasets.infrastructure.models import Dataset
 from apps.organizations.application.services import OrganizationService
 from apps.permissions.application.services import PermissionService
 from apps.query_compute.application.engines import (
@@ -209,6 +210,22 @@ class QueryComputeService:
         sql = payload.get("sql")
         if not dataset_id or not sql:
             raise ValueError("dataset_id and sql required")
+        try:
+            Dataset.objects.get(id=dataset_id, organization_id=job.organization_id)
+        except Dataset.DoesNotExist as exc:
+            raise PermissionDeniedError(
+                "Cross-tenant resource access blocked in worker."
+            ) from exc
+        execution_id = payload.get("execution_id")
+        if execution_id:
+            try:
+                QueryExecution.objects.get(
+                    id=execution_id, organization_id=job.organization_id
+                )
+            except QueryExecution.DoesNotExist as exc:
+                raise PermissionDeniedError(
+                    "Cross-tenant resource access blocked in worker."
+                ) from exc
         return self.execute_sql(
             dataset_id=dataset_id,
             sql=sql,

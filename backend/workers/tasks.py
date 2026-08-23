@@ -58,7 +58,9 @@ def execute_platform_job(self, job_id: str) -> dict:
             dataset_id = (job.payload or {}).get("dataset_id")
             if not dataset_id:
                 raise ValueError("dataset_id required in payload")
-            dataset = DatasetService().run_profile_now(dataset_id=dataset_id)
+            dataset = DatasetService().run_profile_now(
+                dataset_id=dataset_id, organization_id=job.organization_id
+            )
             result = {
                 "dataset_id": str(dataset.id),
                 "profile_status": dataset.profile_status,
@@ -96,7 +98,9 @@ def execute_platform_job(self, job_id: str) -> dict:
             connection_id = (job.payload or {}).get("connection_id")
             if not connection_id:
                 raise ValueError("connection_id required in payload")
-            test_result = ConnectionService().run_test_for_job(connection_id=connection_id)
+            test_result = ConnectionService().run_test_for_job(
+                connection_id=connection_id, organization_id=job.organization_id
+            )
             result = {
                 **test_result,
                 "processed_at": timezone.now().isoformat(),
@@ -110,7 +114,8 @@ def execute_platform_job(self, job_id: str) -> dict:
             if not connection_id:
                 raise ValueError("connection_id required in payload")
             discover_result = DiscoveryService().run_discover_for_job(
-                connection_id=connection_id
+                connection_id=connection_id,
+                organization_id=job.organization_id,
             )
             result = {
                 **discover_result,

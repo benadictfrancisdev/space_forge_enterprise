@@ -9,7 +9,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from apps.audit.application.services import AuditService
-from apps.core.exceptions import NotFoundError, ValidationError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError, ValidationError
 from apps.datasets.application.services import DatasetService
 from apps.integrations.application.connection_service import ConnectionService
 from apps.integrations.application.connector_registry import get_connector_registry
@@ -149,9 +149,11 @@ class SyncService:
         try:
             connection = Connection.objects.select_related(
                 "credential", "target_dataset"
-            ).get(id=connection_id)
+            ).get(id=connection_id, organization_id=job.organization_id)
         except Connection.DoesNotExist as exc:
-            raise NotFoundError("Connection not found") from exc
+            raise PermissionDeniedError(
+                "Cross-tenant resource access blocked in worker."
+            ) from exc
 
         actor = job.created_by or connection.owner or connection.created_by
         if actor is None:
@@ -160,7 +162,9 @@ class SyncService:
         sync_run_id = payload.get("sync_run_id")
         run = None
         if sync_run_id:
-            run = SyncRun.objects.filter(id=sync_run_id).first()
+            run = SyncRun.objects.filter(
+                id=sync_run_id, organization_id=job.organization_id
+            ).first()
         if run is None:
             run = SyncRun.objects.filter(job_id=job.id).first()
         if run is None:
@@ -203,7 +207,10 @@ class SyncService:
             raise ValidationError("Connector does not support incremental sync")
 
         if connection.schema_version == 0 and connector.capabilities.supports_schema_discovery:
-            self.discovery.run_discover_for_job(connection_id=str(connection.id))
+            self.discovery.run_discover_for_job(
+                connection_id=str(connection.id),
+                organization_id=connection.organization_id,
+            )
             connection.refresh_from_db()
 
         credentials = self.connections._resolve_credentials_dict(connection)

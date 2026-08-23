@@ -34,7 +34,10 @@ def run_dataset_pipeline(job: Job, service: JobService) -> dict[str, Any]:
     def stage_profile():
         from apps.datasets.application.services import DatasetService
 
-        return DatasetService().run_profile_now(dataset_id=dataset_id)
+        return DatasetService().run_profile_now(
+            dataset_id=dataset_id,
+            organization_id=job.organization_id,
+        )
 
     def stage_forecast():
         import sys
@@ -48,7 +51,7 @@ def run_dataset_pipeline(job: Job, service: JobService) -> dict[str, Any]:
         from ai_service.gateway import run_gateway
         from apps.datasets.infrastructure.models import Dataset
 
-        ds = Dataset.objects.get(id=dataset_id)
+        ds = Dataset.objects.get(id=dataset_id, organization_id=job.organization_id)
         return run_gateway(
             "forecast",
             {
@@ -74,7 +77,7 @@ def run_dataset_pipeline(job: Job, service: JobService) -> dict[str, Any]:
         from ai_service.gateway import run_gateway
         from apps.datasets.infrastructure.models import Dataset
 
-        ds = Dataset.objects.get(id=dataset_id)
+        ds = Dataset.objects.get(id=dataset_id, organization_id=job.organization_id)
         return run_gateway(
             "narrative",
             {
@@ -99,7 +102,7 @@ def run_dataset_pipeline(job: Job, service: JobService) -> dict[str, Any]:
         from ai_service.gateway import run_gateway
         from apps.datasets.infrastructure.models import Dataset
 
-        ds = Dataset.objects.get(id=dataset_id)
+        ds = Dataset.objects.get(id=dataset_id, organization_id=job.organization_id)
         return run_gateway(
             "decisions",
             {
@@ -115,7 +118,7 @@ def run_dataset_pipeline(job: Job, service: JobService) -> dict[str, Any]:
     def stage_report(prev: dict[str, Any]):
         from apps.datasets.infrastructure.models import Dataset
 
-        ds = Dataset.objects.get(id=dataset_id)
+        ds = Dataset.objects.get(id=dataset_id, organization_id=job.organization_id)
         return {
             "title": f"Intelligence report · {ds.name}",
             "dataset_id": str(ds.id),

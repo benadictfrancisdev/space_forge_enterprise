@@ -1,11 +1,14 @@
 """Enterprise Execution Engine — Track 6 job orchestration."""
 from __future__ import annotations
 
+from uuid import UUID
+
 from django.db import transaction
 from django.utils import timezone
 
 from apps.audit.application.services import AuditService
-from apps.core.exceptions import NotFoundError, ValidationError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError, ValidationError
+from apps.core.tenancy import resource_exists_in_org
 from apps.jobs.infrastructure.models import Job
 from apps.organizations.application.services import OrganizationService
 from apps.permissions.application.services import PermissionService
@@ -44,6 +47,204 @@ SUPPORTED_JOB_TYPES = {
     PIPELINE_JOB_TYPE,
 }
 
+# Payload keys validated only when present (optional references).
+_OPTIONAL_PAYLOAD_KEYS = frozenset(
+    {
+        "sync_run_id",
+        "pipeline_run_id",
+        "quality_run_id",
+        "analytics_run_id",
+        "source_storage_object_id",
+        "execution_id",
+        "resource_id",
+        "plan_id",
+    }
+)
+
+_GOVERNANCE_RESOURCE_MODELS = {
+    "dataset": "apps.datasets.infrastructure.models.Dataset",
+    "connection": "apps.integrations.infrastructure.models.Connection",
+    "storage_object": "apps.storage.infrastructure.models.StorageObject",
+}
+
+
+def _import_model(dotted_path: str):
+    module_path, class_name = dotted_path.rsplit(".", 1)
+    module = __import__(module_path, fromlist=[class_name])
+    return getattr(module, class_name)
+
+
+def _validate_payload_field(
+    *,
+    organization_id: UUID,
+    field_name: str,
+    model_path: str,
+    resource_id,
+) -> None:
+    if field_name in _OPTIONAL_PAYLOAD_KEYS and not resource_id:
+        return
+    if not resource_id:
+        raise ValidationError(f"{field_name} is required in job payload")
+    model = _import_model(model_path)
+    if not resource_exists_in_org(model, resource_id=resource_id, organization_id=organization_id):
+        raise PermissionDeniedError("Referenced resource does not belong to this organization")
+
+
+def validate_job_payload(job_type: str, payload: dict, organization_id: UUID) -> None:
+    """Ensure payload resource IDs belong to the calling organization."""
+    payload = payload or {}
+    org_id = organization_id
+
+    if job_type in {
+        "platform.ping",
+        "ai.compute",
+        "enterprise_services.search_reindex",
+        "enterprise_services.meter",
+    }:
+        return
+
+    if job_type in {"connector.test", "connector.discover"}:
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="connection_id",
+            model_path="apps.integrations.infrastructure.models.Connection",
+            resource_id=payload.get("connection_id"),
+        )
+        return
+
+    if job_type == "connector.sync":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="connection_id",
+            model_path="apps.integrations.infrastructure.models.Connection",
+            resource_id=payload.get("connection_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="sync_run_id",
+            model_path="apps.integrations.infrastructure.models.SyncRun",
+            resource_id=payload.get("sync_run_id"),
+        )
+        return
+
+    dataset_job_types = {
+        "dataset.profile",
+        "dataset.pipeline",
+        "metadata.extract",
+        "business_rules.evaluate",
+        "intelligence.enrich",
+        "track12.wave2",
+        "track12.wave3",
+        "track12.wave4",
+        "ai_platform.reason",
+        "ai_platform.embed",
+        "governance.classify",
+        "governance.delete_request",
+        "governance.lineage",
+        "enterprise_applications.insight_bundle",
+        "enterprise_applications.report_generate",
+        "enterprise_applications.executive_brief",
+    }
+    if job_type in dataset_job_types:
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        return
+
+    if job_type == "data_platform.pipeline":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="source_storage_object_id",
+            model_path="apps.storage.infrastructure.models.StorageObject",
+            resource_id=payload.get("source_storage_object_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="pipeline_run_id",
+            model_path="apps.data_platform.infrastructure.models.PipelineRun",
+            resource_id=payload.get("pipeline_run_id"),
+        )
+        return
+
+    if job_type == "quality.validate":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="quality_run_id",
+            model_path="apps.quality.infrastructure.models.QualityRun",
+            resource_id=payload.get("quality_run_id"),
+        )
+        return
+
+    if job_type == "analytics.compute":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="analytics_run_id",
+            model_path="apps.analytics.infrastructure.models.AnalyticsRun",
+            resource_id=payload.get("analytics_run_id"),
+        )
+        return
+
+    if job_type == "query_compute.execute":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="execution_id",
+            model_path="apps.query_compute.infrastructure.models.QueryExecution",
+            resource_id=payload.get("execution_id"),
+        )
+        return
+
+    if job_type == "ai_platform.rag":
+        _validate_payload_field(
+            organization_id=org_id,
+            field_name="dataset_id",
+            model_path="apps.datasets.infrastructure.models.Dataset",
+            resource_id=payload.get("dataset_id"),
+        )
+        if not payload.get("query"):
+            raise ValidationError("query is required in job payload")
+        return
+
+    if job_type == "governance.evaluate":
+        resource_type = (payload.get("resource_type") or "").lower()
+        resource_id = payload.get("resource_id")
+        if resource_type and resource_id:
+            model_path = _GOVERNANCE_RESOURCE_MODELS.get(resource_type)
+            if model_path:
+                _validate_payload_field(
+                    organization_id=org_id,
+                    field_name="resource_id",
+                    model_path=model_path,
+                    resource_id=resource_id,
+                )
+        return
+
 
 class JobService:
     def __init__(self):
@@ -77,6 +278,9 @@ class JobService:
     ) -> Job:
         org = self.orgs.get_for_user(organization_id=organization_id, user=user)
         self.permissions.require(user=user, organization_id=org.id, permission="job:create")
+        if job_type not in SUPPORTED_JOB_TYPES:
+            raise ValidationError(f"Unsupported job type: {job_type}")
+        validate_job_payload(job_type, payload or {}, org.id)
         job = Job.objects.create(
             organization_id=org.id,
             workspace_id=workspace_id,

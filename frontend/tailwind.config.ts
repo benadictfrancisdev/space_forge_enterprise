@@ -31,6 +31,14 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: "#1A1D24",
+        "text-main": "#E2E8F0",
+        "text-muted": "#94A3B8",
+        v2: {
+          background: "#0F1115",
+          border: "#2A2E37",
+          primary: "#4F8BFF",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -94,9 +102,10 @@ export default {
         },
       },
       borderRadius: {
+        DEFAULT: "0.375rem",
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "var(--radius)",
+        sm: "calc(var(--radius) - 2px)",
       },
       keyframes: {
         "accordion-down": {
@@ -123,6 +132,7 @@ export default {
         'glow-strong': 'var(--shadow-glow-strong)',
         'card': 'var(--shadow-card)',
         'button': 'var(--shadow-button)',
+        'v2-inner': 'inset 0 2px 12px rgba(0, 0, 0, 0.35)',
       },
     },
   },

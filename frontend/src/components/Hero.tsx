@@ -33,19 +33,19 @@ export default function Hero() {
               New · Auto-Analyze for spreadsheets
             </div>
 
-            <h1 className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5.25rem] font-medium text-foreground mb-6 animate-slide-up leading-[0.98] tracking-[-0.045em]">
+            <h1 className="mb-6 animate-slide-up text-5xl font-semibold tracking-tighter text-gray-900 md:text-7xl">
               Your spreadsheet,<br />
               <span className="bg-gradient-to-r from-primary to-[hsl(258_90%_66%)] bg-clip-text text-transparent">answered in 60 seconds.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground mb-9 animate-slide-up leading-[1.55] max-w-xl font-light" style={{ animationDelay: "0.1s" }}>
+            <p className="mb-8 max-w-xl animate-slide-up text-lg font-light leading-relaxed text-gray-600 md:text-xl" style={{ animationDelay: "0.1s" }}>
               Upload Excel or CSV — get an executive dashboard, the 5 insights that matter, and a shareable report. No analyst, no setup, no SQL.
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <Link to="/data-agent" className="w-full sm:w-auto">
                 <Button
-                  className="w-full sm:w-auto rounded-full px-7 py-3.5 min-h-[48px] gap-2 text-sm font-medium tracking-wide bg-primary text-primary-foreground hover:bg-primary/90 transition-all border-0 shadow-[var(--shadow-glow-strong)]"
+                  className="w-full min-h-[48px] gap-2 rounded-md border-0 bg-primary px-6 py-4 text-sm font-medium tracking-wide text-primary-foreground shadow-[var(--shadow-glow-strong)] transition-all hover:bg-primary/90 sm:w-auto"
                 >
                   Try with your spreadsheet — free <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -53,7 +53,7 @@ export default function Hero() {
               <Link to="/apps/executive" className="w-full sm:w-auto">
                 <Button
                   variant="outline"
-                  className="w-full sm:w-auto rounded-full px-7 py-3.5 min-h-[48px] gap-2 text-sm font-medium"
+                  className="w-full min-h-[48px] gap-2 rounded-md px-6 py-4 text-sm font-medium sm:w-auto"
                 >
                   Open Enterprise Suite <ArrowRight className="w-4 h-4" />
                 </Button>

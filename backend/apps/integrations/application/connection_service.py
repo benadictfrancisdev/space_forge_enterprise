@@ -5,7 +5,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from apps.audit.application.services import AuditService
-from apps.core.exceptions import NotFoundError, ValidationError
+from apps.core.exceptions import NotFoundError, PermissionDeniedError, ValidationError
 from apps.integrations.application.connector_registry import get_connector_registry
 from apps.integrations.application.credential_service import CredentialService
 from apps.integrations.domain.auth import AuthMethod
@@ -344,14 +344,16 @@ class ConnectionService:
             )
         return connection
 
-    def run_test_for_job(self, *, connection_id) -> dict:
+    def run_test_for_job(self, *, connection_id, organization_id) -> dict:
         """Worker entrypoint — no HTTP user permission checks."""
         try:
             connection = Connection.objects.select_related("credential").get(
-                id=connection_id
+                id=connection_id, organization_id=organization_id
             )
         except Connection.DoesNotExist as exc:
-            raise NotFoundError("Connection not found") from exc
+            raise PermissionDeniedError(
+                "Cross-tenant resource access blocked in worker."
+            ) from exc
 
         registry = get_connector_registry()
         try:

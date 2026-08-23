@@ -5,11 +5,39 @@ import re
 import time
 from typing import Any
 
+import sqlparse
+from sqlparse.tokens import Keyword
 
-FORBIDDEN_SQL = re.compile(
-    r"\b(DROP|DELETE|UPDATE|INSERT|ALTER|CREATE|TRUNCATE|GRANT|REVOKE)\b",
-    re.IGNORECASE,
-)
+from apps.core.exceptions import ValidationError
+
+_BLOCKED_EXTENSIONS = frozenset({"COPY", "ATTACH", "INSTALL", "LOAD"})
+
+
+def _iter_tokens(token):
+    if hasattr(token, "tokens"):
+        for child in token.tokens:
+            yield from _iter_tokens(child)
+    else:
+        yield token
+
+
+def validate_select_only_ast(sql_query: str) -> None:
+    """Reject any SQL that is not a single read-only SELECT statement."""
+    sql_query = (sql_query or "").strip()
+    if not sql_query:
+        raise ValidationError("SQL query is required")
+
+    statements = [stmt for stmt in sqlparse.parse(sql_query) if str(stmt).strip()]
+    if len(statements) != 1:
+        raise ValidationError("Multiple SQL statements are not allowed")
+
+    stmt = statements[0]
+    if stmt.get_type() != "SELECT":
+        raise ValidationError("Only read-only SELECT queries are permitted")
+
+    for token in _iter_tokens(stmt):
+        if token.ttype in Keyword and token.value.upper() in _BLOCKED_EXTENSIONS:
+            raise ValidationError(f"{token.value.upper()} statements are not allowed")
 
 
 def generate_sql(natural_language: str, columns: list[str], row_limit: int = 100) -> str:
@@ -51,8 +79,7 @@ def optimize_sql(sql: str) -> str:
 
 
 def execute_sql_duckdb(csv_bytes: bytes, sql: str, filename: str = "data.csv") -> dict[str, Any]:
-    if FORBIDDEN_SQL.search(sql):
-        raise ValueError("Only read-only SELECT queries are permitted")
+    validate_select_only_ast(sql)
 
     started = time.perf_counter()
     try:
@@ -95,6 +122,8 @@ def execute_sql_duckdb(csv_bytes: bytes, sql: str, filename: str = "data.csv") -
 
 def execute_sql_fallback(csv_bytes: bytes, sql: str) -> dict[str, Any]:
     """Pure Python fallback when DuckDB unavailable — limited SELECT * / COUNT."""
+    validate_select_only_ast(sql)
+
     from apps.data_platform.application.pipeline_stages import parse_content
 
     rows, columns = parse_content(csv_bytes, "data.csv")

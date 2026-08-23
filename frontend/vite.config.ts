@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
+const useCloudHmr = process.env.VITE_CLOUD_HMR === "true";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -9,7 +11,7 @@ export default defineConfig({
     port: 3000,
     strictPort: false,
     allowedHosts: true,
-    hmr: { clientPort: 443, protocol: "wss" },
+    hmr: useCloudHmr ? { clientPort: 443, protocol: "wss" } : true,
   },
   plugins: [react()],
   resolve: {
