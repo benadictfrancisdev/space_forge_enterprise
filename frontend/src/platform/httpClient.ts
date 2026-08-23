@@ -58,19 +58,33 @@ function buildUrl(path: string, query?: HttpRequestOptions["query"]): string {
 
 export type TokenProvider = () => Promise<string | null>;
 export type TenantProvider = () => { organizationId: string | null; workspaceId: string | null };
+export type TenantBootstrap = () => Promise<boolean>;
 
 let tokenProvider: TokenProvider = async () => null;
 let tenantProvider: TenantProvider = () => ({
   organizationId: null,
   workspaceId: null,
 });
+let tenantBootstrap: TenantBootstrap | null = null;
 
 export function configureHttpClient(opts: {
   getAccessToken: TokenProvider;
   getTenant: TenantProvider;
+  /** Persist org/workspace ids before tenant-scoped API calls when headers are missing. */
+  ensureTenant?: TenantBootstrap;
 }): void {
   tokenProvider = opts.getAccessToken;
   tenantProvider = opts.getTenant;
+  tenantBootstrap = opts.ensureTenant ?? null;
+}
+
+async function resolveTenantHeaders(): Promise<{ organizationId: string | null; workspaceId: string | null }> {
+  let tenant = tenantProvider();
+  if (!tenant.organizationId && tenantBootstrap) {
+    await tenantBootstrap();
+    tenant = tenantProvider();
+  }
+  return tenant;
 }
 
 async function sleep(ms: number) {
@@ -94,7 +108,7 @@ export async function httpRequest<T = unknown>(
       if (!options.public) {
         const token = await tokenProvider();
         if (token) headers.Authorization = `Bearer ${token}`;
-        const tenant = tenantProvider();
+        const tenant = await resolveTenantHeaders();
         if (tenant.organizationId) headers["X-Organization-ID"] = tenant.organizationId;
         if (tenant.workspaceId) headers["X-Workspace-ID"] = tenant.workspaceId;
         headers["X-Platform-Retry-401"] = "1";

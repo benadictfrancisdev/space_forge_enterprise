@@ -1,16 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Editor, { loader } from "@monaco-editor/react";
-import * as monaco from "monaco-editor";
-import EditorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
+import Editor, { type Monaco } from "@monaco-editor/react";
 import { Loader2, Play, Rocket, ShieldCheck, ShieldAlert, CircleAlert } from "lucide-react";
 import { toast } from "sonner";
 import { httpRequest } from "@/platform/httpClient";
-
-// Vite worker wiring (keeps Monaco off the CDN + off the network).
-(self as unknown as { MonacoEnvironment: unknown }).MonacoEnvironment = {
-  getWorker: () => new EditorWorker(),
-};
-loader.config({ monaco });
 
 type Entity = { type: string; name: string; label?: string };
 type ValidateResult = {
@@ -43,9 +35,9 @@ export default function RulesIDE() {
   const [name, setName] = useState("High Latency Guard");
   const [result, setResult] = useState<ValidateResult | null>(null);
   const [busy, setBusy] = useState(false);
-  const disposables = useRef<monaco.IDisposable[]>([]);
+  const disposables = useRef<Monaco.IDisposable[]>([]);
 
-  const defineTheme = useCallback((m: typeof monaco) => {
+  const defineTheme = useCallback((m: Monaco) => {
     m.editor.defineTheme("spaceforge-dark", {
       base: "vs-dark",
       inherit: true,
@@ -59,7 +51,7 @@ export default function RulesIDE() {
     });
   }, []);
 
-  const registerAtGraph = useCallback((m: typeof monaco) => {
+  const registerAtGraph = useCallback((m: Monaco) => {
     disposables.current.push(
       m.languages.registerCompletionItemProvider("markdown", {
         triggerCharacters: ["@"],
@@ -177,6 +169,9 @@ export default function RulesIDE() {
             value={source}
             onChange={(v) => setSource(v ?? "")}
             beforeMount={(m) => {
+              if (import.meta.env.DEV) {
+                (window as unknown as { monaco?: Monaco }).monaco = m;
+              }
               defineTheme(m);
               registerAtGraph(m);
             }}

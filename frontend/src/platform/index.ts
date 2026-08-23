@@ -46,6 +46,10 @@ if (useDjango && authService instanceof DjangoAuthService) {
       organizationId: getOrganizationId(),
       workspaceId: getWorkspaceId(),
     }),
+    ensureTenant: async () => {
+      const result = await djangoApi.ensureTenant();
+      return !result.error && !!result.data;
+    },
   });
   configureTokenRefresher(() => forceRefreshAccessToken());
 }
