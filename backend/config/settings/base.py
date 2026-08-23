@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "apps.governance",
     "apps.enterprise_services",
     "apps.enterprise_applications",
+    "apps.telemetry",
 ]
 
 MIDDLEWARE = [

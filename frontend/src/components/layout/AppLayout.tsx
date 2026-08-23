@@ -5,6 +5,7 @@ import {
   AlertTriangle,
   Activity,
   Code2,
+  FileCode2,
   Boxes,
   Database,
   LogOut,
@@ -16,6 +17,7 @@ type NavItem = { to: string; label: string; icon: typeof LayoutGrid; end?: boole
 
 const NAV: NavItem[] = [
   { to: "/v2", label: "Workspace", icon: LayoutGrid, end: true },
+  { to: "/v2/rules", label: "Rules IDE", icon: FileCode2 },
   { to: "/v2/incidents", label: "Incidents", icon: AlertTriangle },
   { to: "/v2/metrics", label: "Metrics", icon: Activity },
   { to: "/apps", label: "Enterprise Apps", icon: Boxes },

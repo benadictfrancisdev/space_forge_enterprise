@@ -27,38 +27,65 @@ function Metric({ label, value, suffix }: { label: string; value: string; suffix
 export default function MetricsView() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
+
+  const load = async () => {
+    if (!isApiConfigured()) {
+      setLoading(false);
+      return;
+    }
+    try {
+      const env = await httpRequest<Stats>({ method: "GET", path: "/api/v1/events/stats/", retries: 0 });
+      setStats(env.data ?? null);
+    } catch {
+      setStats(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      if (!isApiConfigured()) {
-        setLoading(false);
-        return;
-      }
-      try {
-        const env = await httpRequest<Stats>({ method: "GET", path: "/api/v1/events/stats/", retries: 0 });
-        if (!cancelled) setStats(env.data ?? null);
-      } catch {
-        // Event Engine stats arrive in Phase 2 — show zeroed baseline, not a crash.
-        if (!cancelled) setStats(null);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
+      if (!cancelled) await load();
     })();
     return () => {
       cancelled = true;
     };
   }, []);
 
+  const generate = async () => {
+    setSeeding(true);
+    try {
+      await httpRequest({ method: "POST", path: "/api/v1/events/ingest/", body: { demo: true, count: 200 }, retries: 0 });
+      await load();
+    } catch {
+      /* ignore */
+    } finally {
+      setSeeding(false);
+    }
+  };
+
   const v = (n?: number) => (n == null ? "—" : String(n));
 
   return (
     <div className="p-8 max-w-5xl" data-testid="metrics-view">
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight">Metrics</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Real-time latency percentiles, throughput and error rates across telemetry streams.
-        </p>
+      <div className="mb-6 flex items-end justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Metrics</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Real-time latency percentiles, throughput and error rates across telemetry streams.
+          </p>
+        </div>
+        <button
+          onClick={generate}
+          disabled={seeding}
+          data-testid="metrics-generate-button"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm border border-border hover:bg-secondary transition-colors disabled:opacity-50"
+        >
+          {seeding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}
+          Generate sample telemetry
+        </button>
       </div>
 
       {loading ? (

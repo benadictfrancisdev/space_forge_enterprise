@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
-import { AlertTriangle, Activity, Code2, Boxes, Database, ArrowUpRight } from "lucide-react";
+import { AlertTriangle, Activity, Code2, Boxes, Database, ArrowUpRight, FileCode2 } from "lucide-react";
 
 const CARDS = [
+  {
+    to: "/v2/rules",
+    title: "Rules IDE",
+    desc: "Author .rule.md telemetry logic — deterministic AST compile, no arbitrary code.",
+    icon: FileCode2,
+    tag: "rules",
+  },
   {
     to: "/v2/incidents",
     title: "Incident Intelligence",

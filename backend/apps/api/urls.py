@@ -22,5 +22,6 @@ urlpatterns = [
     path("governance/", include("apps.governance.api.urls")),
     path("enterprise-services/", include("apps.enterprise_services.api.urls")),
     path("applications/", include("apps.enterprise_applications.api.urls")),
+    path("", include("apps.telemetry.api.urls")),
     path("ops/", include("apps.platform.api.ops_urls")),
 ]

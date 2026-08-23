@@ -57,6 +57,7 @@ const AppLayout         = lazy(() => import("./components/layout/AppLayout"));
 const WorkspaceHome     = lazy(() => import("./pages/v2/WorkspaceHome"));
 const IncidentsView     = lazy(() => import("./pages/v2/IncidentsView"));
 const MetricsView       = lazy(() => import("./pages/v2/MetricsView"));
+const RulesIDE          = lazy(() => import("./pages/v2/RulesIDE"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -130,6 +131,7 @@ const App = () => (
                     <Route path="/apps/*"              element={<ErrorBoundary name="EnterpriseApps"><EnterpriseApps /></ErrorBoundary>} />
                     <Route path="/v2" element={<ErrorBoundary name="Workspace"><AppLayout /></ErrorBoundary>}>
                       <Route index element={<WorkspaceHome />} />
+                      <Route path="rules" element={<RulesIDE />} />
                       <Route path="incidents" element={<IncidentsView />} />
                       <Route path="metrics" element={<MetricsView />} />
                     </Route>
