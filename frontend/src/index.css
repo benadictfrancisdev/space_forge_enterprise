@@ -131,38 +131,38 @@
   }
 
   .dark {
-    /* Dark — premium graphite obsidian, warm-white accent */
-    --background: 220 10% 6%;
-    --foreground: 30 14% 95%;
+    /* Dark — Databricks / Claude minimalist geometric (SpaceForge V2) */
+    --background: 220 17% 7%;   /* #0F1115 Deep Obsidian */
+    --foreground: 210 20% 92%;
 
-    --card: 220 10% 9%;
-    --card-foreground: 30 14% 95%;
+    --card: 222 16% 12%;        /* #1A1D24 Surface elevation */
+    --card-foreground: 210 20% 92%;
 
-    --popover: 220 10% 9%;
-    --popover-foreground: 30 14% 95%;
+    --popover: 222 16% 12%;
+    --popover-foreground: 210 20% 92%;
 
-    /* Classic monochrome — white on black */
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 6%;
+    /* Electric blue — used selectively on focus & active */
+    --primary: 219 100% 65%;    /* #4F8BFF */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 8% 13%;
-    --secondary-foreground: 30 14% 95%;
+    --secondary: 222 14% 15%;
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 220 8% 12%;
-    --muted-foreground: 220 6% 62%;
+    --muted: 222 14% 15%;
+    --muted-foreground: 220 10% 62%;
 
-    --accent: 36 18% 78%;
-    --accent-foreground: 220 14% 8%;
+    --accent: 219 100% 65%;
+    --accent-foreground: 0 0% 100%;
 
-    --cyan-acc: 36 22% 88%;
-    --blue-glow: 36 18% 78%;
+    --cyan-acc: 219 100% 65%;
+    --blue-glow: 219 100% 65%;
 
     --destructive: 358 56% 52%;
-    --destructive-foreground: 30 14% 95%;
+    --destructive-foreground: 210 20% 95%;
 
-    --border: 220 8% 16%;
-    --input: 220 8% 14%;
-    --ring: 0 0% 98%;
+    --border: 221 13% 19%;      /* #2A2E37 Structural border */
+    --input: 221 13% 19%;
+    --ring: 219 100% 65%;
 
     /* Charts — quiet warm-grey palette */
     --chart-1: 0 0% 98%;

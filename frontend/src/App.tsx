@@ -13,7 +13,7 @@ import { Loader2 } from "lucide-react";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { UniversalShareButton } from "@/components/sharing/UniversalShareButton";
 
-const SHARE_BUTTON_HIDDEN_PATHS = ["/auth", "/privacy", "/terms", "/data-agent", "/app", "/apps"];
+const SHARE_BUTTON_HIDDEN_PATHS = ["/auth", "/privacy", "/terms", "/data-agent", "/app", "/apps", "/v2"];
 const GlobalShareButton = () => {
   const { pathname } = useLocation();
   if (SHARE_BUTTON_HIDDEN_PATHS.some((p) => pathname.startsWith(p))) return null;
@@ -53,6 +53,10 @@ const EventSearch     = lazy(() => import("./features/events/pages/EventSearch")
 const EventAnalytics  = lazy(() => import("./features/events/pages/EventAnalytics"));
 const EventSettings   = lazy(() => import("./features/events/pages/EventSettings"));
 const EnterpriseApps    = lazy(() => import("./pages/apps"));
+const AppLayout         = lazy(() => import("./components/layout/AppLayout"));
+const WorkspaceHome     = lazy(() => import("./pages/v2/WorkspaceHome"));
+const IncidentsView     = lazy(() => import("./pages/v2/IncidentsView"));
+const MetricsView       = lazy(() => import("./pages/v2/MetricsView"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -124,6 +128,11 @@ const App = () => (
                     <Route path="/analytics"       element={<ErrorBoundary name="AnalyticsHub"><AnalyticsHub /></ErrorBoundary>} />
                     <Route path="/analytics/:module" element={<ErrorBoundary name="AnalyticsHub"><AnalyticsHub /></ErrorBoundary>} />
                     <Route path="/apps/*"              element={<ErrorBoundary name="EnterpriseApps"><EnterpriseApps /></ErrorBoundary>} />
+                    <Route path="/v2" element={<ErrorBoundary name="Workspace"><AppLayout /></ErrorBoundary>}>
+                      <Route index element={<WorkspaceHome />} />
+                      <Route path="incidents" element={<IncidentsView />} />
+                      <Route path="metrics" element={<MetricsView />} />
+                    </Route>
                     <Route path="/app/events"                    element={<ErrorBoundary name="EventsDashboard"><EventsDashboard /></ErrorBoundary>} />
                     <Route path="/app/events/explorer"           element={<ErrorBoundary name="EventsExplorer"><EventsExplorer /></ErrorBoundary>} />
                     <Route path="/app/events/explorer/:eventId"  element={<ErrorBoundary name="EventDetails"><EventDetails /></ErrorBoundary>} />
