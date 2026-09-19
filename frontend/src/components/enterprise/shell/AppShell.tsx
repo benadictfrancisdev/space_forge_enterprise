@@ -1,23 +1,25 @@
 import { NavLink, useLocation, Outlet } from "react-router-dom";
 import { ReactNode, useEffect, useState } from "react";
 import {
-  LayoutDashboard,
-  Table2,
-  Plug,
   Activity,
-  Search,
   BarChart3,
-  Settings as SettingsIcon,
   Command,
-  Bell,
+  LayoutDashboard,
+  Plug,
+  Search,
+  Settings as SettingsIcon,
+  Table2,
   ChevronsLeft,
   ChevronsRight,
+  Bell,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
+import { WorkspacePageFrame } from "@/components/layout/WorkspacePageFrame";
+import { EVENT_ENGINE_NAV, workspacePath } from "@/config/workspaceNav";
 
-const NAV = [
+const LEGACY_NAV = [
   { to: "/app/events", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/app/events/explorer", label: "Event Explorer", icon: Table2 },
   { to: "/app/events/sources", label: "Data Sources", icon: Plug },
@@ -34,10 +36,16 @@ interface Props {
   children: ReactNode;
 }
 
+function useUnifiedWorkspace() {
+  const { pathname } = useLocation();
+  return pathname === "/v2" || pathname.startsWith("/v2/");
+}
+
 export function AppShell({ title, breadcrumbs, actions, children }: Props) {
+  const unified = useUnifiedWorkspace();
   const [collapsed, setCollapsed] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const { pathname } = useLocation();
+  const navItems = unified ? EVENT_ENGINE_NAV : LEGACY_NAV;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -49,6 +57,14 @@ export function AppShell({ title, breadcrumbs, actions, children }: Props) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  if (unified) {
+    return (
+      <WorkspacePageFrame title={title} breadcrumbs={breadcrumbs} actions={actions}>
+        {children}
+      </WorkspacePageFrame>
+    );
+  }
 
   return (
     <div className="min-h-screen flex bg-background text-foreground">
@@ -81,7 +97,7 @@ export function AppShell({ title, breadcrumbs, actions, children }: Props) {
               Event Engine
             </div>
           )}
-          {NAV.map((item) => (
+          {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -102,7 +118,7 @@ export function AppShell({ title, breadcrumbs, actions, children }: Props) {
 
         <div className="p-2 border-t border-border/60">
           <NavLink
-            to="/data-agent"
+            to={unified ? workspacePath("/data-agent") : "/data-agent"}
             className="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-muted/70"
           >
             {!collapsed && "Data Agent Workspace"}

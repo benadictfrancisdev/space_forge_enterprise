@@ -40,6 +40,8 @@
     --ring: 0 0% 6%;
 
     --radius: 0.375rem;
+    --sf-nav-width: 15rem;
+    --sf-inspector-width: 18.75rem;
 
     /* Glass tokens — neutral grayscale */
     --glass-bg: 0 0% 100% / 0.85;
@@ -333,6 +335,10 @@
 }
 
 @layer components {
+  .sf-page {
+    @apply p-4 md:p-6;
+  }
+
   .linear-card {
     @apply bg-card border border-border rounded-xl transition-all duration-300;
     box-shadow: var(--shadow-card);

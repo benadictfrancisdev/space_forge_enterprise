@@ -8,7 +8,7 @@ import { queryEvents, type EventsQueryFilters, type EventRow } from "@/features/
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { Search } from "lucide-react";
+import { workspacePath } from "@/config/workspaceNav";
 
 const STATUSES = ["pending", "processing", "processed", "failed", "skipped"] as const;
 const SEVS = ["info", "warn", "error", "critical"] as const;
@@ -36,7 +36,7 @@ export default function EventsExplorer() {
 
   return (
     <AppShell
-      breadcrumbs={[{ label: "Event Engine", to: "/app/events" }, { label: "Event Explorer" }]}
+      breadcrumbs={[{ label: "Event Engine", to: workspacePath("/events") }, { label: "Event Explorer" }]}
       title="Event Explorer"
       actions={<span className="text-xs text-muted-foreground tabular-nums">{rows.length.toLocaleString()} loaded</span>}
     >
@@ -87,7 +87,7 @@ export default function EventsExplorer() {
                     <td className="px-3 py-2 text-xs text-muted-foreground font-mono">{r.correlation_id?.slice(0, 8) ?? "—"}</td>
                     <td className="px-3 py-2 pr-4 text-right">
                       <Link
-                        to={`/app/events/explorer/${r.id}`}
+                        to={workspacePath(`/events/explorer/${r.id}`)}
                         className="text-xs font-mono text-muted-foreground hover:text-foreground"
                       >
                         {r.id.slice(0, 8)}

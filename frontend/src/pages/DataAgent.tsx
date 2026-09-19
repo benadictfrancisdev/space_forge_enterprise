@@ -74,7 +74,14 @@ export interface DatasetState {
 
 // ─── NAVIGATION: shared config in @/config/dataAgentNav ───
 
-const DataAgent = () => {
+import { workspacePath } from "@/config/workspaceNav";
+
+type DataAgentProps = {
+  /** Render inside unified workspace shell (no marketing Navbar). */
+  embedded?: boolean;
+};
+
+const DataAgent = ({ embedded = false }: DataAgentProps) => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
@@ -238,7 +245,7 @@ const DataAgent = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className={cn(embedded ? "h-full" : "min-h-screen", "flex items-center justify-center bg-background")}>
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-6 h-6 animate-spin text-primary" />
           <span className="text-sm text-muted-foreground">Loading...</span>
@@ -260,11 +267,11 @@ const DataAgent = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-background overflow-hidden">
+    <div className={cn(embedded ? "h-full" : "h-screen", "flex flex-col bg-background overflow-hidden")}>
       <RoleOnboardingModal />
-      <Navbar />
-      
-      <div className="flex-1 flex min-h-0 pt-16">
+      {!embedded && <Navbar />}
+
+      <div className={cn("flex-1 flex min-h-0", !embedded && "pt-16")}>
         <ResponsiveSidebar
           navGroups={navGroups}
           activeTab={activeTab}
@@ -309,8 +316,8 @@ const DataAgent = () => {
                       onClick={() =>
                         navigate(
                           dataset?.id && isApiConfigured()
-                            ? `/apps/executive?dataset=${dataset.id}`
-                            : "/apps/executive"
+                            ? `${workspacePath("/apps/executive")}?dataset=${dataset.id}`
+                            : workspacePath("/apps/executive")
                         )
                       }
                     >

@@ -1,4 +1,5 @@
 import { AppShell } from "@/components/enterprise/shell/AppShell";
+import { workspacePath } from "@/config/workspaceNav";
 import { StateView } from "@/components/enterprise/feedback/StateView";
 import { Plug } from "lucide-react";
 
@@ -22,7 +23,7 @@ const KINDS = [
 export default function EventSources() {
   return (
     <AppShell
-      breadcrumbs={[{ label: "Event Engine", to: "/app/events" }, { label: "Data Sources" }]}
+      breadcrumbs={[{ label: "Event Engine", to: workspacePath("/events") }, { label: "Data Sources" }]}
       title="Data Sources"
     >
       <StateView

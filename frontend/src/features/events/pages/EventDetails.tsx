@@ -5,6 +5,7 @@ import { AppShell } from "@/components/enterprise/shell/AppShell";
 import { StateView } from "@/components/enterprise/feedback/StateView";
 import { StatusBadge, SeverityBadge } from "@/components/enterprise/status/Badges";
 import { backend } from "@/platform";
+import { workspacePath } from "@/config/workspaceNav";
 
 export default function EventDetails() {
   const { eventId } = useParams();
@@ -25,8 +26,8 @@ export default function EventDetails() {
   return (
     <AppShell
       breadcrumbs={[
-        { label: "Event Engine", to: "/app/events" },
-        { label: "Explorer", to: "/app/events/explorer" },
+        { label: "Event Engine", to: workspacePath("/events") },
+        { label: "Explorer", to: workspacePath("/events/explorer") },
         { label: eventId?.slice(0, 8) ?? "Event" },
       ]}
       title="Event Details"
@@ -34,7 +35,7 @@ export default function EventDetails() {
       {!user && <StateView kind="permission" title="Sign in required" />}
       {user && isLoading && <StateView kind="loading" title="Loading eventâ€¦" />}
       {user && isError && <StateView kind="error" title="Failed to load" description={(error as Error)?.message} />}
-      {user && !isLoading && !evt && <StateView kind="empty" title="Event not found" description="It may have been deleted or you don't have access." action={<Link to="/app/events/explorer" className="text-sm underline">Back to Explorer</Link>} />}
+      {user && !isLoading && !evt && <StateView kind="empty" title="Event not found" description="It may have been deleted or you don't have access." action={<Link to={workspacePath("/events/explorer")} className="text-sm underline">Back to Explorer</Link>} />}
 
       {evt && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

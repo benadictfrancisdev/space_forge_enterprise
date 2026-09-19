@@ -4,6 +4,7 @@ import { AppShell } from "@/components/enterprise/shell/AppShell";
 import { MetricCard } from "@/components/enterprise/metrics/MetricCard";
 import { StateView } from "@/components/enterprise/feedback/StateView";
 import { fetchEventStats, ingestSampleEvents } from "@/features/events/api/eventsApi";
+import { workspacePath } from "@/config/workspaceNav";
 import { Activity, Database, Zap, AlertTriangle, Gauge, Plug, Clock, HardDrive, ShieldCheck, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -31,7 +32,7 @@ export default function EventsDashboard() {
 
   return (
     <AppShell
-      breadcrumbs={[{ label: "Event Engine", to: "/app/events" }, { label: "Dashboard" }]}
+      breadcrumbs={[{ label: "Event Engine", to: workspacePath("/events") }, { label: "Dashboard" }]}
       title="Universal Event Engine"
       actions={
         <>
@@ -76,7 +77,7 @@ export default function EventsDashboard() {
             action={
               <div className="flex gap-2 justify-center">
                 <Button size="sm" onClick={() => seed.mutate()} disabled={seed.isPending}>Generate sample events</Button>
-                <Button size="sm" variant="outline" asChild><a href="/app/events/sources">Connect a source</a></Button>
+                <Button size="sm" variant="outline" asChild><a href={workspacePath("/events/sources")}>Connect a source</a></Button>
               </div>
             }
           />

@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
+import { DECISION_INTELLIGENCE_PATH, workspacePath } from "@/config/workspaceNav";
 import { ConnectorHealthCheck } from "@/components/data-agent/ConnectorHealthCheck";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Activity } from "lucide-react";
@@ -54,7 +55,7 @@ const Navbar = () => {
               How it Works
             </a>
             <Link to="/v2" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
-              Rule Engine
+              Workspace
             </Link>
             <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
               Pricing
@@ -62,28 +63,28 @@ const Navbar = () => {
             <Link to="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
               Docs
             </Link>
-            <Link to="/analytics" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
+            <Link to={workspacePath("/analytics")} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
               Analytics
             </Link>
             <Link
-              to="/apps/executive"
+              to={workspacePath("/apps/executive")}
               className="text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200"
             >
-              Enterprise Suite
+              Intelligence
             </Link>
-            <Link to="/decisions" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
-              Decision Feed
+            <Link to={DECISION_INTELLIGENCE_PATH} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
+              Decisions
             </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/apps/executive">
+            <Link to={workspacePath("/apps/executive")}>
               <Button size="sm" variant="outline" className="rounded-full px-4 gap-1.5">
                 <Building2 className="w-3.5 h-3.5" />
-                Enterprise Suite
+                Intelligence
               </Button>
             </Link>
-            <Link to="/data-agent">
+            <Link to={workspacePath("/data-agent")}>
               <Button size="sm" className="rounded-full px-5 gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90">
                 Analyze Data <ArrowUpRight className="w-3.5 h-3.5" />
               </Button>
@@ -113,13 +114,13 @@ const Navbar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem asChild>
-                    <Link to="/apps/executive" className="cursor-pointer">
+                    <Link to={workspacePath("/apps/executive")} className="cursor-pointer">
                       <Building2 className="w-4 h-4 mr-2" />
-                      Enterprise Suite
+                      Intelligence
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to="/data-agent" className="cursor-pointer">
+                    <Link to={workspacePath("/data-agent")} className="cursor-pointer">
                       <User className="w-4 h-4 mr-2" />
                       Data Agent
                     </Link>
@@ -173,13 +174,13 @@ const Navbar = () => {
                 </a>
               ))}
               <Link to="/v2" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">
-              Rule Engine
+              Workspace
             </Link>
             <Link to="/pricing" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Pricing</Link>
               <Link to="/docs" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Docs</Link>
-              <Link to="/apps/executive" className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">Enterprise Suite</Link>
-              <Link to="/decisions" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Decision Feed</Link>
-              <Link to="/data-agent" className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Data Agent</Link>
+              <Link to={workspacePath("/apps/executive")} className="px-3 py-3 min-h-[44px] flex items-center text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">Intelligence</Link>
+              <Link to={DECISION_INTELLIGENCE_PATH} className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Decision Intelligence</Link>
+              <Link to={workspacePath("/data-agent")} className="px-3 py-3 min-h-[44px] flex items-center text-sm text-foreground/90 hover:bg-secondary rounded-lg transition-colors">Data Agent</Link>
               <div className="flex gap-2 pt-3 mt-2 border-t border-border items-center">
                 <ThemeToggle showLabel />
                 {user ? (

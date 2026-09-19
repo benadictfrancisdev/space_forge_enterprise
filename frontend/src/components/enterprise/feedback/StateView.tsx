@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { Loader2, AlertCircle, Inbox, Lock, CheckCircle2 } from "lucide-react";
+import { Loader2, AlertCircle, Inbox, Lock, CheckCircle2, CircleDashed } from "lucide-react";
 
-type Kind = "empty" | "loading" | "error" | "permission" | "success";
+type Kind = "empty" | "loading" | "error" | "permission" | "success" | "capability";
 
 interface StateViewProps {
   kind: Kind;
@@ -19,6 +19,7 @@ const ICONS: Record<Kind, typeof Inbox> = {
   error: AlertCircle,
   permission: Lock,
   success: CheckCircle2,
+  capability: CircleDashed,
 };
 
 export function StateView({ kind, title, description, icon, action, className }: StateViewProps) {

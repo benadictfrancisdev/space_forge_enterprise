@@ -8,14 +8,12 @@ export function useMarketingTheme() {
   }, []);
 }
 
-/** Apply enterprise dark shell only while V2 routes are mounted. */
+/** Apply enterprise workspace overflow lock only — theme follows user preference (ThemeToggle). */
 export function useV2Theme() {
   useEffect(() => {
-    document.documentElement.classList.add("dark");
     document.body.classList.add("overflow-hidden");
 
     return () => {
-      document.documentElement.classList.remove("dark");
       document.body.classList.remove("overflow-hidden");
     };
   }, []);
